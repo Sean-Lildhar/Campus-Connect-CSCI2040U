@@ -1,8 +1,8 @@
 # Campus Navigator
 
-A Java Swing desktop application providing the foundation for a Google Maps–style
-campus navigation system. Navigation and pathfinding are **not yet implemented** —
-this release focuses on login, user management, location data, and the GUI framework.
+A Java Swing desktop application providing a Google Maps–style campus navigation system.
+This iteration focuses on login, user management, location data, and the GUI framework.
+Navigation is not yet implemented.
 
 The GitHub Project Board can be found here:
 https://github.com/users/Sean-Lildhar/projects/3/views/1
@@ -49,19 +49,10 @@ Campus Connect/
 │   └── favourites.csv                      <- username,roomNumber,...
 ├── out/                                
 ```
-
-
-
-### Project-CSCI2040U
-This is the GitHub Repository for the Software Design and Analysis (CSCI-2040U) Term Project.
-The repo has private access so everything here is just between us.
+---
 
 ### Style Guide
 We will be following the standard IntelliJ IDEA code format
-
-To keep the code consistent we should open a new branch every time we go to solve a new issue that was on the project board and then merge the branch to main once the code has been checked.
-
-Any functions we create will have a comment saying which requirement it fulfils to keep everything organized.
 
 ### Contract
 https://docs.google.com/document/d/1VipmW8vkt5_UCaz_loQ3VfByI6DXn7l5zuI0lDceEp0/edit?tab=t.0#heading=h.8vounpy78p60
