@@ -1,0 +1,274 @@
+package gui;
+
+import data.EditFavourites;
+import data.EditLocation;
+import data.EditUser;
+import model.Location;
+import model.User;
+
+import javax.swing.*;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import java.awt.*;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Layout: JSplitPane  (left | right)
+ * Left panel  — empty map placeholder for regular users;
+ * admin tree panel (JTree by location type) for admins.
+ * Right panel — navigation controls: Starting Location, Destination,
+ * location-type dropdown, Navigate / Search / Favourites buttons.
+ * A logout button in the top bar returns the user to LoginFrame.
+ */
+public class MainFrame extends JFrame {
+
+    private final User currentUser;
+    private final EditUser editUser;
+    private final EditLocation editLocation;
+    private final EditFavourites EditFavourites;
+
+    private JTextField startingLocationField;
+    private JTextField destinationField;
+    private JComboBox<String> locationTypeDropdown;
+
+    private JTree adminTree;
+    private DefaultTreeModel treeModel;
+    private DefaultMutableTreeNode treeRoot;
+
+    public MainFrame(User user, EditUser editUser) {
+        this.currentUser = user;
+        this.editUser = editUser;
+        this.editLocation = new EditLocation();
+        this.EditFavourites = new EditFavourites();
+
+        setTitle("Campus Connect  - "
+                + user.getUsername()
+                + (user.isAdmin() ? "  (Admin)" : ""));
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(950, 620);
+        setMinimumSize(new Dimension(700, 450));
+        setLocationRelativeTo(null);
+
+        initComponents();
+    }
+
+
+
+    private void initComponents() {
+        //Top bar
+        add(buildTopBar(), BorderLayout.NORTH);
+
+        //Split pane
+        JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
+                buildLeftPanel(), buildRightPanel());
+        split.setDividerLocation(320);
+        split.setResizeWeight(0.35);
+        add(split, BorderLayout.CENTER);
+    }
+
+    private JPanel buildTopBar() {
+        JPanel bar = new JPanel(new BorderLayout());
+        bar.setBorder(BorderFactory.createEmptyBorder(4, 10, 4, 10));
+
+        JLabel info = new JLabel("Logged in as:  "
+                + currentUser.getUsername()
+                + (currentUser.isAdmin() ? "  [Admin]" : ""));
+        info.setFont(new Font("Arial", Font.PLAIN, 13));
+
+        JButton logout = new JButton("Logout");
+        logout.addActionListener(e -> {
+            dispose();
+            new LoginFrame().setVisible(true);
+        });
+
+        bar.add(info, BorderLayout.WEST);
+        bar.add(logout, BorderLayout.EAST);
+        return bar;
+    }
+
+    //Left Panel
+
+    private JPanel buildLeftPanel() {
+        JPanel panel = new JPanel(new BorderLayout());
+
+        if (currentUser.isAdmin()) {
+            panel.setBorder(BorderFactory.createTitledBorder("Admin Panel"));
+            panel.add(buildAdminTreePanel(), BorderLayout.CENTER);
+        } else {
+            panel.setBorder(BorderFactory.createTitledBorder("Campus Map"));
+            // Placeholder — will be replaced with an image in a future iteration
+            JLabel placeholder = new JLabel(
+                    "<html><center><i>Campus map will be<br>displayed here</i></center></html>",
+                    SwingConstants.CENTER);
+            placeholder.setFont(new Font("Arial", Font.ITALIC, 14));
+            placeholder.setForeground(Color.GRAY);
+            panel.add(placeholder, BorderLayout.CENTER);
+        }
+        return panel;
+    }
+
+    //Tree for Admins
+
+    private JScrollPane buildAdminTreePanel() {
+        treeRoot = new DefaultMutableTreeNode("Campus");
+        treeModel = new DefaultTreeModel(treeRoot);
+        populateTree();
+
+        adminTree = new JTree(treeModel);
+        adminTree.setRootVisible(false);
+        adminTree.setShowsRootHandles(true);
+        expandAllRows();
+
+        adminTree.addTreeSelectionListener(e -> {
+            DefaultMutableTreeNode selected =
+                    (DefaultMutableTreeNode) adminTree.getLastSelectedPathComponent();
+            if (selected == null || !selected.isLeaf()) return;
+
+            String roomNumber = selected.getUserObject().toString();
+            Location loc = editLocation.getLocationByRoom(roomNumber);
+            if (loc != null) {
+                AdminScreen dlg =
+                        new AdminScreen(this, loc, editLocation);
+                dlg.setVisible(true);
+                rebuildTree();
+            }
+        });
+
+        return new JScrollPane(adminTree);
+    }
+
+    private void populateTree() {
+        Map<String, DefaultMutableTreeNode> cats = new LinkedHashMap<>();
+        cats.put("restaurant", new DefaultMutableTreeNode("Restaurants"));
+        cats.put("washroom", new DefaultMutableTreeNode("Washrooms"));
+        cats.put("water fountain", new DefaultMutableTreeNode("Water Fountains"));
+        cats.put("classroom", new DefaultMutableTreeNode("Classrooms"));
+
+        for (DefaultMutableTreeNode catNode : cats.values()) {
+            treeRoot.add(catNode);
+        }
+
+        for (Location loc : editLocation.getAllLocations()) {
+            DefaultMutableTreeNode catNode = cats.get(loc.getLocationType().toLowerCase());
+            if (catNode != null) {
+                catNode.add(new DefaultMutableTreeNode(loc.getRoomNumber()));
+            }
+        }
+    }
+
+    private void rebuildTree() {
+        treeRoot.removeAllChildren();
+        populateTree();
+        treeModel.reload();
+        expandAllRows();
+    }
+
+    private void expandAllRows() {
+        for (int i = 0; i < adminTree.getRowCount(); i++) {
+            adminTree.expandRow(i);
+        }
+    }
+
+    //Right Panel
+    private JPanel buildRightPanel() {
+        JPanel panel = new JPanel(new GridBagLayout());
+        panel.setBorder(BorderFactory.createTitledBorder("Navigation"));
+
+        GridBagConstraints g = new GridBagConstraints();
+        g.fill = GridBagConstraints.HORIZONTAL;
+        g.insets = new Insets(9, 12, 9, 12);
+
+        //Starting Location
+        g.gridx = 0;
+        g.gridy = 0;
+        g.gridwidth = 1;
+        g.weightx = 0;
+        panel.add(new JLabel("Starting Location:"), g);
+        startingLocationField = new JTextField(18);
+        g.gridx = 1;
+        g.weightx = 1;
+        panel.add(startingLocationField, g);
+
+        //Destination
+        g.gridx = 0;
+        g.gridy = 1;
+        g.weightx = 0;
+        panel.add(new JLabel("Destination:"), g);
+        destinationField = new JTextField(18);
+        g.gridx = 1;
+        g.weightx = 1;
+        panel.add(destinationField, g);
+
+        //Location Type dropdown
+        g.gridx = 0;
+        g.gridy = 2;
+        g.weightx = 0;
+        panel.add(new JLabel("Location Type:"), g);
+        locationTypeDropdown = new JComboBox<>(
+                new String[]{"restaurant", "washroom", "water fountain", "classroom"});
+        g.gridx = 1;
+        g.weightx = 1;
+        panel.add(locationTypeDropdown, g);
+
+        JPanel btns = new JPanel(new FlowLayout(FlowLayout.CENTER, 12, 0));
+        JButton navBtn = new JButton("Navigate");
+        JButton searchBtn = new JButton("Search");
+        JButton favBtn = new JButton("Favourites");
+        btns.add(navBtn);
+        btns.add(searchBtn);
+        btns.add(favBtn);
+
+        g.gridx = 0;
+        g.gridy = 3;
+        g.gridwidth = 2;
+        g.insets = new Insets(20, 12, 9, 12);
+        panel.add(btns, g);
+
+        g.gridy = 4;
+        g.weighty = 1;
+        panel.add(Box.createVerticalGlue(), g);
+
+        navBtn.addActionListener(e -> handleNavigate());
+        searchBtn.addActionListener(e -> handleSearch());
+        favBtn.addActionListener(e -> handleFavourites());
+
+        return panel;
+    }
+
+    private void handleNavigate() {
+        String start = startingLocationField.getText().trim();
+        String dest = destinationField.getText().trim();
+
+        //Check if destination is a closed location
+        if (!dest.isEmpty()) {
+            Location destLoc = editLocation.getLocationByRoom(dest);
+            if (destLoc != null && "closed".equalsIgnoreCase(destLoc.getStatus())) {
+                JOptionPane.showMessageDialog(this,
+                        "This location is currently closed. We apologize for the inconvenience.",
+                        "Location Closed", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+        }
+
+        //Placeholder — actual pathfinding to be implemented later
+        JOptionPane.showMessageDialog(this,
+                "Calculating optimal path from '" + start + "' to '" + dest + "'...",
+                "Navigating", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    private void handleSearch() {
+        String type = (String) locationTypeDropdown.getSelectedItem();
+        List<Location> results = editLocation.getLocationsByType(type);
+        SearchScreen dlg = new SearchScreen(
+                this, results, destinationField, currentUser, EditFavourites);
+        dlg.setVisible(true);
+    }
+
+    private void handleFavourites() {
+        List<String> favs = EditFavourites.getFavourites(currentUser.getUsername());
+        FavouritesScreen dlg = new FavouritesScreen(this, favs, destinationField);
+        dlg.setVisible(true);
+    }
+}
