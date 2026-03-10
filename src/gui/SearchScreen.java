@@ -54,7 +54,6 @@ public class SearchScreen extends JDialog {
         } else {
             for (Location loc : locations) {
                 model.addElement(loc.toString());
-                System.out.println("test");
             }
         }
 
