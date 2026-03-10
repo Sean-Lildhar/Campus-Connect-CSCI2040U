@@ -181,78 +181,130 @@ public class MainFrame extends JFrame {
         g.insets = new Insets(9, 12, 9, 12);
 
         //Starting Location
-        g.gridx = 0;
-        g.gridy = 0;
-        g.gridwidth = 1;
-        g.weightx = 0;
+        g.gridx = 0; g.gridy = 0; g.gridwidth = 1; g.weightx = 0;
         panel.add(new JLabel("Starting Location:"), g);
         startingLocationField = new JTextField(18);
-        g.gridx = 1;
-        g.weightx = 1;
+        g.gridx = 1; g.weightx = 1;
         panel.add(startingLocationField, g);
 
         //Destination
-        g.gridx = 0;
-        g.gridy = 1;
-        g.weightx = 0;
+        g.gridx = 0; g.gridy = 1; g.weightx = 0;
         panel.add(new JLabel("Destination:"), g);
         destinationField = new JTextField(18);
-        g.gridx = 1;
-        g.weightx = 1;
+        g.gridx = 1; g.weightx = 1;
         panel.add(destinationField, g);
 
         //Location Type dropdown
-        g.gridx = 0;
-        g.gridy = 2;
-        g.weightx = 0;
+        g.gridx = 0; g.gridy = 2; g.weightx = 0;
         panel.add(new JLabel("Location Type:"), g);
         locationTypeDropdown = new JComboBox<>(
                 new String[]{"restaurant", "washroom", "water fountain", "classroom"});
-        g.gridx = 1;
-        g.weightx = 1;
+        g.gridx = 1; g.weightx = 1;
         panel.add(locationTypeDropdown, g);
 
+        //Action buttons
         JPanel btns = new JPanel(new FlowLayout(FlowLayout.CENTER, 12, 0));
-        JButton navBtn = new JButton("Navigate");
+        JButton navBtn    = new JButton("Navigate");
         JButton searchBtn = new JButton("Search");
-        JButton favBtn = new JButton("Favourites");
+        JButton favBtn    = new JButton("Favourites");
         btns.add(navBtn);
         btns.add(searchBtn);
         btns.add(favBtn);
 
-        g.gridx = 0;
-        g.gridy = 3;
-        g.gridwidth = 2;
+        g.gridx = 0; g.gridy = 3; g.gridwidth = 2;
         g.insets = new Insets(20, 12, 9, 12);
         panel.add(btns, g);
 
-        g.gridy = 4;
-        g.weighty = 1;
-        panel.add(Box.createVerticalGlue(), g);
-
-        navBtn.addActionListener(e -> handleNavigate());
+        navBtn.addActionListener(e    -> handleNavigate());
         searchBtn.addActionListener(e -> handleSearch());
-        favBtn.addActionListener(e -> handleFavourites());
+        favBtn.addActionListener(e    -> handleFavourites());
+
+        //Admin User Management
+        if (currentUser.isAdmin()) {
+            g.gridx = 0; g.gridy = 4; g.gridwidth = 2; g.weightx = 1;
+            g.insets = new Insets(16, 12, 2, 12);
+            panel.add(new JSeparator(), g);
+
+            g.gridy = 5;
+            g.insets = new Insets(2, 12, 4, 12);
+            JLabel usersLabel = new JLabel("User Management");
+            usersLabel.setFont(new Font("Arial", Font.BOLD, 12));
+            panel.add(usersLabel, g);
+
+            DefaultListModel<String> userListModel = new DefaultListModel<>();
+            JList<String> userList = new JList<>(userListModel);
+            userList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+            userList.setFont(new Font("Monospaced", Font.PLAIN, 12));
+            userList.setFixedCellHeight(24);
+            refreshUserList(userListModel);
+
+            JScrollPane userScroll = new JScrollPane(userList);
+            userScroll.setPreferredSize(new Dimension(0, 160));
+
+            g.gridy = 6; g.weighty = 1; g.fill = GridBagConstraints.BOTH;
+            g.insets = new Insets(0, 12, 12, 12);
+            panel.add(userScroll, g);
+
+            userList.addMouseListener(new java.awt.event.MouseAdapter() {
+                @Override
+                public void mouseClicked(java.awt.event.MouseEvent e) {
+                    int idx = userList.locationToIndex(e.getPoint());
+                    if (idx < 0) return;
+                    List<User> allUsers = editUser.getAllUsers();
+                    if (idx >= allUsers.size()) return;
+                    User selected = allUsers.get(idx);
+                    // Prevent admin from editing their own role
+                    if (selected.getUsername().equals(currentUser.getUsername())) {
+                        JOptionPane.showMessageDialog(MainFrame.this,
+                                "You cannot change your own role.",
+                                "Not Allowed", JOptionPane.WARNING_MESSAGE);
+                        return;
+                    }
+                    UserPerms perm = new UserPerms(
+                            MainFrame.this, selected, editUser,
+                            () -> refreshUserList(userListModel));
+                    perm.setVisible(true);
+                }
+            });
+        } else {
+            g.gridx = 0; g.gridy = 4; g.gridwidth = 2; g.weighty = 1;
+            panel.add(Box.createVerticalGlue(), g);
+        }
 
         return panel;
+    }
+
+    private void refreshUserList(DefaultListModel<String> model) {
+        model.clear();
+        for (User u : editUser.getAllUsers()) {
+            model.addElement((u.isAdmin() ? "[Admin]  " : "[User]   ") + u.getUsername());
+        }
     }
 
     private void handleNavigate() {
         String start = startingLocationField.getText().trim();
         String dest = destinationField.getText().trim();
 
-        //Check if destination is a closed location
-        if (!dest.isEmpty()) {
-            Location destLoc = editLocation.getLocationByRoom(dest);
-            if (destLoc != null && "closed".equalsIgnoreCase(destLoc.getStatus())) {
-                JOptionPane.showMessageDialog(this,
-                        "This location is currently closed. We apologize for the inconvenience.",
-                        "Location Closed", JOptionPane.WARNING_MESSAGE);
-                return;
-            }
+        //Check for blank or invalid locations
+        Location startLoc = editLocation.getLocationByRoom(start);
+        Location destLoc = editLocation.getLocationByRoom(dest);
+
+        if (start.isEmpty() || dest.isEmpty() || startLoc == null || destLoc == null) {
+            JOptionPane.showMessageDialog(this,
+                    "Please Enter a Valid Location",
+                    "Invalid Location", JOptionPane.WARNING_MESSAGE);
+            return;
         }
 
-        //Placeholder — actual pathfinding to be implemented later
+        //Check if destination is closed
+        if ("closed".equalsIgnoreCase(destLoc.getStatus())) {
+            JOptionPane.showMessageDialog(this,
+                    "This location is currently closed. We apologize for the inconvenience.",
+                    "Location Closed", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        //Placeholder — pathfinding later
         JOptionPane.showMessageDialog(this,
                 "Calculating optimal path from '" + start + "' to '" + dest + "'...",
                 "Navigating", JOptionPane.INFORMATION_MESSAGE);
