@@ -46,7 +46,7 @@ public class FavouritesScreen extends JDialog {
             model.addElement("No favourites saved.");
         } else {
             for (String room : favourites) {
-                model.addElement("Room  " + room);
+                model.addElement(room);
             }
         }
 
