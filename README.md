@@ -29,24 +29,24 @@ Campus Connect/
 ├── src/
 │   ├── Main.java                       
 │   ├── model/
-│   │   ├── User.java                   <- standard user (username, password, favourites)
-│   │   ├── Admin.java                  <- admin extends User
-│   │   └── Location.java               <- campus location (room, type, status)
+│   │   ├── User.java                       <- standard user (username, password, favourites)
+│   │   ├── Admin.java                      <- admin extends User
+│   │   └── Location.java                   <- campus location (room, type, status)
 │   ├── data/
-│   │   ├── UserDAO.java                <- read/write users.csv
-│   │   ├── LocationDAO.java            <- read/write locations.csv
-│   │   └── FavouritesDAO.java          <- read/write favourites.csv
+│   │   ├── EditUser.java                   <- read/write users.csv
+│   │   ├── EditLocation.java               <- read/write locations.csv
+│   │   └── EditFavourites.java             <- read/write favourites.csv
 │   └── gui/
-│       ├── LoginFrame.java             <- login screen
-│       ├── MainFrame.java              <- main window (JSplitPane)
-│       ├── CreateAccountDialog.java    <- new-account popup
-│       ├── SearchDialog.java           <- location search results popup
-│       ├── FavouritesDialog.java       <- favourites list popup
-│       └── AdminRoomEditorDialog.java  <- admin room-status editor popup
+│       ├── LoginFrame.java                 <- login screen
+│       ├── MainFrame.java                  <- main window (JSplitPane)
+│       ├── CreateAccountScreen.java        <- new-account popup
+│       ├── SearchScreen.java               <- location search results popup
+│       ├── FavouritesScreen.java           <- favourites list popup
+│       └── AdminScreen.java                <- admin room-status editor popup
 ├── data/
-│   ├── users.csv                       <- username,password,role
-│   ├── locations.csv                   <- roomNumber,locationType,status
-│   └── favourites.csv                  <- username,roomNumber,...
+│   ├── users.csv                           <- username,password,role
+│   ├── locations.csv                       <- roomNumber,locationType,status
+│   └── favourites.csv                      <- username,roomNumber,...
 ├── out/                                
 ```
 
