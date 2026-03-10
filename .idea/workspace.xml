@@ -5,13 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fc13e2ab-f074-41b9-b1f5-cf61f23128c5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/gui/UserPerms.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/favourites.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/favourites.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/users.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/users.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Campus Connect - Term Project/gui/MainFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Campus Connect - Term Project/gui/MainFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Campus Connect - Term Project/model/Location.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Campus Connect - Term Project/model/Location.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/FavouritesScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/FavouritesScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/MainFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/SearchScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/SearchScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Location.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Location.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -93,5 +108,16 @@
       <updated>1773099741132</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
