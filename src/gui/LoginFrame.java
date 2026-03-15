@@ -1,7 +1,7 @@
 package gui;
 
-import data.EditUser;
 import data.EditFavourites;
+import data.EditUser;
 import model.User;
 
 import javax.swing.*;

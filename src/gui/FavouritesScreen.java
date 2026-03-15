@@ -32,9 +32,9 @@ public class FavouritesScreen extends JDialog {
         setLayout(new BorderLayout(0, 5));
 
         JLabel header;
-        if(favourites.isEmpty()) {
+        if (favourites.isEmpty()) {
             header = new JLabel("You have no saved favourites.", SwingConstants.CENTER);
-        } else{
+        } else {
             header = new JLabel("Click a room to set as destination:", SwingConstants.CENTER);
         }
         header.setBorder(BorderFactory.createEmptyBorder(10, 0, 4, 0));
