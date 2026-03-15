@@ -33,19 +33,22 @@ public class UserPerms extends JDialog {
         g.insets = new Insets(7, 5, 7, 5);
 
         //Username
-        g.gridx = 0; g.gridy = 0;
+        g.gridx = 0;
+        g.gridy = 0;
         panel.add(new JLabel("Username:"), g);
         g.gridx = 1;
         panel.add(new JLabel(user.getUsername()), g);
 
         //Current role
-        g.gridx = 0; g.gridy = 1;
+        g.gridx = 0;
+        g.gridy = 1;
         panel.add(new JLabel("Current Role:"), g);
         g.gridx = 1;
         panel.add(new JLabel(user.isAdmin() ? "Admin" : "User"), g);
 
         //Role dropdown
-        g.gridx = 0; g.gridy = 2;
+        g.gridx = 0;
+        g.gridy = 2;
         panel.add(new JLabel("New Role:"), g);
         roleDropdown = new JComboBox<>(new String[]{"user", "admin"});
         roleDropdown.setSelectedItem(user.isAdmin() ? "admin" : "user");
@@ -54,7 +57,9 @@ public class UserPerms extends JDialog {
 
         //Save button
         JButton saveBtn = new JButton("Save");
-        g.gridx = 0; g.gridy = 3; g.gridwidth = 2;
+        g.gridx = 0;
+        g.gridy = 3;
+        g.gridwidth = 2;
         g.insets = new Insets(18, 5, 5, 5);
         panel.add(saveBtn, g);
 

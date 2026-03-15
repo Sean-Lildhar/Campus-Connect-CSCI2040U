@@ -55,7 +55,6 @@ public class MainFrame extends JFrame {
     }
 
 
-
     private void initComponents() {
         //Top bar
         add(buildTopBar(), BorderLayout.NORTH);
@@ -124,7 +123,7 @@ public class MainFrame extends JFrame {
         adminTree.addTreeSelectionListener(e -> {
             DefaultMutableTreeNode selected =
                     (DefaultMutableTreeNode) adminTree.getLastSelectedPathComponent();
-            if (selected == null || !selected.isLeaf()){
+            if (selected == null || !selected.isLeaf()) {
                 return;
             }
             String roomNumber = selected.getUserObject().toString();
@@ -182,25 +181,35 @@ public class MainFrame extends JFrame {
         g.insets = new Insets(9, 12, 9, 12);
 
         //Starting Location
-        g.gridx = 0; g.gridy = 0; g.gridwidth = 1; g.weightx = 0;
+        g.gridx = 0;
+        g.gridy = 0;
+        g.gridwidth = 1;
+        g.weightx = 0;
         panel.add(new JLabel("Starting Location:"), g);
         startingLocationField = new JTextField(18);
-        g.gridx = 1; g.weightx = 1;
+        g.gridx = 1;
+        g.weightx = 1;
         panel.add(startingLocationField, g);
 
         //Destination
-        g.gridx = 0; g.gridy = 1; g.weightx = 0;
+        g.gridx = 0;
+        g.gridy = 1;
+        g.weightx = 0;
         panel.add(new JLabel("Destination:"), g);
         destinationField = new JTextField(18);
-        g.gridx = 1; g.weightx = 1;
+        g.gridx = 1;
+        g.weightx = 1;
         panel.add(destinationField, g);
 
         //Location Type dropdown
-        g.gridx = 0; g.gridy = 2; g.weightx = 0;
+        g.gridx = 0;
+        g.gridy = 2;
+        g.weightx = 0;
         panel.add(new JLabel("Location Type:"), g);
         locationTypeDropdown = new JComboBox<>(
                 new String[]{"restaurant", "washroom", "water fountain", "classroom"});
-        g.gridx = 1; g.weightx = 1;
+        g.gridx = 1;
+        g.weightx = 1;
         panel.add(locationTypeDropdown, g);
 
         //Action buttons
@@ -212,17 +221,22 @@ public class MainFrame extends JFrame {
         buttons.add(searchButton);
         buttons.add(favButton);
 
-        g.gridx = 0; g.gridy = 3; g.gridwidth = 2;
+        g.gridx = 0;
+        g.gridy = 3;
+        g.gridwidth = 2;
         g.insets = new Insets(20, 12, 9, 12);
         panel.add(buttons, g);
 
-        navButton.addActionListener(e    -> handleNavigate());
+        navButton.addActionListener(e -> handleNavigate());
         searchButton.addActionListener(e -> handleSearch());
-        favButton.addActionListener(e    -> handleFavourites());
+        favButton.addActionListener(e -> handleFavourites());
 
         //Admin User Management
         if (currentUser.isAdmin()) {
-            g.gridx = 0; g.gridy = 4; g.gridwidth = 2; g.weightx = 1;
+            g.gridx = 0;
+            g.gridy = 4;
+            g.gridwidth = 2;
+            g.weightx = 1;
             g.insets = new Insets(16, 12, 2, 12);
             panel.add(new JSeparator(), g);
 
@@ -242,7 +256,9 @@ public class MainFrame extends JFrame {
             JScrollPane userScroll = new JScrollPane(userList);
             userScroll.setPreferredSize(new Dimension(0, 160));
 
-            g.gridy = 6; g.weighty = 1; g.fill = GridBagConstraints.BOTH;
+            g.gridy = 6;
+            g.weighty = 1;
+            g.fill = GridBagConstraints.BOTH;
             g.insets = new Insets(0, 12, 12, 12);
             panel.add(userScroll, g);
 
@@ -268,7 +284,10 @@ public class MainFrame extends JFrame {
                 }
             });
         } else {
-            g.gridx = 0; g.gridy = 4; g.gridwidth = 2; g.weighty = 1;
+            g.gridx = 0;
+            g.gridy = 4;
+            g.gridwidth = 2;
+            g.weighty = 1;
             panel.add(Box.createVerticalGlue(), g);
         }
 

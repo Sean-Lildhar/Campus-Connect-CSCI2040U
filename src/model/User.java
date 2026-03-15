@@ -36,7 +36,7 @@ public class User {
     }
 
 
-     //Adds a room number to favourites if not already present.
+    //Adds a room number to favourites if not already present.
 
     public boolean addFavourite(String roomNumber) {
         if (!favouriteLocations.contains(roomNumber)) {
