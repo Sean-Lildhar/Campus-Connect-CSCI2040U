@@ -44,7 +44,6 @@ public class EditFavourites {
             }
         }
         if (!found) {
-            // Build a new row array and add it
             String[] newRow = new String[1 + favourites.size()];
             newRow[0] = username;
             for (int i = 0; i < favourites.size(); i++) newRow[i + 1] = favourites.get(i);

@@ -72,9 +72,11 @@ public class MainFrame extends JFrame {
         JPanel bar = new JPanel(new BorderLayout());
         bar.setBorder(BorderFactory.createEmptyBorder(4, 10, 4, 10));
 
-        JLabel info = new JLabel("Logged in as:  "
-                + currentUser.getUsername()
-                + (currentUser.isAdmin() ? "  [Admin]" : ""));
+        String login = "Logged in as:  " + currentUser.getUsername();
+        if (currentUser.isAdmin()) {
+            login = login + "  [Admin]";
+        }
+        JLabel info = new JLabel(login);
         info.setFont(new Font("Arial", Font.PLAIN, 13));
 
         JButton logout = new JButton("Logout");
@@ -89,7 +91,6 @@ public class MainFrame extends JFrame {
     }
 
     //Left Panel
-
     private JPanel buildLeftPanel() {
         JPanel panel = new JPanel(new BorderLayout());
 
@@ -98,9 +99,9 @@ public class MainFrame extends JFrame {
             panel.add(buildAdminTreePanel(), BorderLayout.CENTER);
         } else {
             panel.setBorder(BorderFactory.createTitledBorder("Campus Map"));
-            // Placeholder — will be replaced with an image in a future iteration
+            //Placeholder — will be replaced with an image in a future iteration
             JLabel placeholder = new JLabel(
-                    "<html><center><i>Campus map will be<br>displayed here</i></center></html>",
+                    "Campus map will be displayed here",
                     SwingConstants.CENTER);
             placeholder.setFont(new Font("Arial", Font.ITALIC, 14));
             placeholder.setForeground(Color.GRAY);
@@ -110,7 +111,6 @@ public class MainFrame extends JFrame {
     }
 
     //Tree for Admins
-
     private JScrollPane buildAdminTreePanel() {
         treeRoot = new DefaultMutableTreeNode("Campus");
         treeModel = new DefaultTreeModel(treeRoot);
@@ -124,14 +124,15 @@ public class MainFrame extends JFrame {
         adminTree.addTreeSelectionListener(e -> {
             DefaultMutableTreeNode selected =
                     (DefaultMutableTreeNode) adminTree.getLastSelectedPathComponent();
-            if (selected == null || !selected.isLeaf()) return;
-
+            if (selected == null || !selected.isLeaf()){
+                return;
+            }
             String roomNumber = selected.getUserObject().toString();
             Location loc = editLocation.getLocationByRoom(roomNumber);
             if (loc != null) {
-                AdminScreen dlg =
+                AdminScreen dialogue =
                         new AdminScreen(this, loc, editLocation);
-                dlg.setVisible(true);
+                dialogue.setVisible(true);
                 rebuildTree();
             }
         });
@@ -203,21 +204,21 @@ public class MainFrame extends JFrame {
         panel.add(locationTypeDropdown, g);
 
         //Action buttons
-        JPanel btns = new JPanel(new FlowLayout(FlowLayout.CENTER, 12, 0));
-        JButton navBtn    = new JButton("Navigate");
-        JButton searchBtn = new JButton("Search");
-        JButton favBtn    = new JButton("Favourites");
-        btns.add(navBtn);
-        btns.add(searchBtn);
-        btns.add(favBtn);
+        JPanel buttons = new JPanel(new FlowLayout(FlowLayout.CENTER, 12, 0));
+        JButton navButton = new JButton("Navigate");
+        JButton searchButton = new JButton("Search");
+        JButton favButton = new JButton("Favourites");
+        buttons.add(navButton);
+        buttons.add(searchButton);
+        buttons.add(favButton);
 
         g.gridx = 0; g.gridy = 3; g.gridwidth = 2;
         g.insets = new Insets(20, 12, 9, 12);
-        panel.add(btns, g);
+        panel.add(buttons, g);
 
-        navBtn.addActionListener(e    -> handleNavigate());
-        searchBtn.addActionListener(e -> handleSearch());
-        favBtn.addActionListener(e    -> handleFavourites());
+        navButton.addActionListener(e    -> handleNavigate());
+        searchButton.addActionListener(e -> handleSearch());
+        favButton.addActionListener(e    -> handleFavourites());
 
         //Admin User Management
         if (currentUser.isAdmin()) {

@@ -14,7 +14,7 @@ public class UserPerms extends JDialog {
     private JComboBox<String> roleDropdown;
 
     public UserPerms(JFrame parent, User user, EditUser editUser, Runnable onSave) {
-        super(parent, "Edit Permissions  —  " + user.getUsername(), true);
+        super(parent, "Edit Permissions  -   " + user.getUsername(), true);
         this.user = user;
         this.editUser = editUser;
         this.onSave = onSave;
@@ -68,7 +68,7 @@ public class UserPerms extends JDialog {
         JOptionPane.showMessageDialog(this,
                 user.getUsername() + " is now a " + newRole + ".",
                 "Saved", JOptionPane.INFORMATION_MESSAGE);
-        onSave.run(); // refresh the user list in MainFrame
+        onSave.run();
         dispose();
     }
 }
