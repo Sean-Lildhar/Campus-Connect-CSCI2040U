@@ -31,11 +31,12 @@ public class FavouritesScreen extends JDialog {
     private void initComponents() {
         setLayout(new BorderLayout(0, 5));
 
-        JLabel header = new JLabel(
-                favourites.isEmpty()
-                        ? "You have no saved favourites."
-                        : "Click a room to set as destination:",
-                SwingConstants.CENTER);
+        JLabel header;
+        if(favourites.isEmpty()) {
+            header = new JLabel("You have no saved favourites.", SwingConstants.CENTER);
+        } else{
+            header = new JLabel("Click a room to set as destination:", SwingConstants.CENTER);
+        }
         header.setBorder(BorderFactory.createEmptyBorder(10, 0, 4, 0));
         header.setFont(new Font("Arial", Font.PLAIN, 13));
         add(header, BorderLayout.NORTH);

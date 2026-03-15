@@ -16,7 +16,7 @@ public class AdminScreen extends JDialog {
     public AdminScreen(JFrame parent,
                        Location location,
                        EditLocation editLocation) {
-        super(parent, "Edit Room  —  " + location.getRoomNumber(), true);
+        super(parent, "Edit Room  -  " + location.getRoomNumber(), true);
         this.location = location;
         this.editLocation = editLocation;
 
@@ -47,7 +47,7 @@ public class AdminScreen extends JDialog {
         g.gridx = 1;
         panel.add(new JLabel(location.getRoomNumber()), g);
 
-        // Status dropdown
+        //Status dropdown
         g.gridx = 0;
         g.gridy = 2;
         panel.add(new JLabel("Status:"), g);
