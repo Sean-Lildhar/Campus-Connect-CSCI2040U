@@ -63,20 +63,11 @@ We will be following the standard IntelliJ IDEA code format
 
 ### Application Setup
 
-Ensure that JDK21 is installed on your machine,
-Git-Happens recommends IntelliJ IDEA is installed and functional
-
-#### If using IntelliJ:
-1. Clone in the repository using the Clone Repository Button on the opening page,
-2. Go to File -> Project Structure and set the Project SDK to JDK 25
-3. Open the Main file as the contains the main method
-4. Click the green run arrow that appears at the top of the screen
-
-#### If running the file from terminal:
-1. Type `git clone https://github.com/Sean-Lildhar/Campus-Connect-CSCI2040U.git` into the terminal - Clones the Repo
-2. Type `cd Campus-Connect-CSCI2040U` into terminal - Changes Directory into the repo
-3. Type `javac -d out src/Main.java src/gui/*.java` into terminal - Compiles all the files
-4. Type `java -cp src Main` into terminal - Runs the program
+1. Ensure that JDK21 or later is installed on your machine check by running `java -version` in your terminal 
+2. Type `git clone https://github.com/Sean-Lildhar/Campus-Connect-CSCI2040U.git` into the terminal - Clones the Repo
+3. Type `cd Campus-Connect-CSCI2040U` into terminal - Changes Directory into the repo
+4. Type `java -jar CampusNavigator.jar` into terminal
+5. Use either the provided Sample credentials or create your own
 
 
 
