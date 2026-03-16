@@ -10,7 +10,15 @@ import java.util.List;
  */
 public class EditFavourites {
 
-    private static final String FILE_PATH = "data/favourites.csv";
+    private final String FILE_PATH;
+
+    public EditFavourites() {
+        this.FILE_PATH = "data/favourites.csv";
+    }
+
+    public EditFavourites(String filePath) {
+        this.FILE_PATH = filePath;
+    }
 
     public List<String> getFavourites(String username) {
         for (String[] row : readAllRows()) {

@@ -15,7 +15,15 @@ import java.util.List;
  */
 public class EditUser {
 
-    private static final String FILE_PATH = "data/users.csv";
+    private final String FILE_PATH;
+
+    public EditUser() {
+        this.FILE_PATH = "data/users.csv";
+    }
+
+    public EditUser(String filePath) {
+        this.FILE_PATH = filePath;
+    }
 
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
