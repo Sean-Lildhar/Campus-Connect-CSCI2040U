@@ -126,7 +126,7 @@ public class EditFavouritesTest {
 
     @Test
     void testWriteFavourites_doesNotAffectOtherUsers() {
-        List<String> newFavs = Arrays.asList("999");
+        List<String> newFavs = List.of("999");
         editFavourites.writeFavourites("user", newFavs);
         List<String> adminFavs = editFavourites.getFavourites("admin");
         assertEquals(1, adminFavs.size());

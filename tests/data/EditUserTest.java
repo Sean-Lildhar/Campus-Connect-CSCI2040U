@@ -59,7 +59,7 @@ public class EditUserTest {
                 .findFirst().orElse(null);
         assertNotNull(admin);
         assertTrue(admin.isAdmin());
-        assertTrue(admin instanceof Admin);
+        assertInstanceOf(Admin.class, admin);
     }
 
     @Test
