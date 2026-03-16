@@ -47,7 +47,7 @@ public class AdminTest {
 
     @Test
     void testAdminIsInstanceOfUser() {
-        assertTrue(admin instanceof User);
+        assertInstanceOf(User.class, admin);
     }
 
     @Test
