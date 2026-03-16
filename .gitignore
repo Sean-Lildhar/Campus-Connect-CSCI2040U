@@ -17,7 +17,6 @@
 # Build directories
 target/
 build/
-out/
 bin/
 
 # Dependency directories

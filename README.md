@@ -1,4 +1,4 @@
-# Campus Navigator
+# Campus Connect
 
 A Java Swing desktop application providing a Google Maps-style campus navigation with a focus
 on providing indoor directions.
@@ -60,3 +60,37 @@ Campus Connect/
 ### Style Guide
 
 We will be following the standard IntelliJ IDEA code format
+
+### Application Setup
+
+Ensure that either the latest JDK (JDK 25) is installed on your machine or your IDE of choice,
+Git-Happens recommends IntelliJ IDEA is installed and functional
+
+#### If using IntelliJ:
+1. Clone in the repository using the Clone Repository Button on the opening page,
+2. Go to File -> Project Structure and set the Project SDK to JDK 25
+3. Open the Main file as the contains the main method
+4. Click the green run arrow that appears at the top of the screen
+
+#### If running the file from terminal:
+1. Type `git clone https://github.com/Sean-Lildhar/Campus-Connect-CSCI2040U.git` into the terminal - Clones the Repo
+2. Type `cd Campus-Connect-CSCI2040U` into terminal - Changes Directory into the repo
+3. Type `javac -d out src/Main.java src/gui/*.java` into terminal - Compiles all the files
+4. Type `java -cp src Main` into terminal - Runs the program
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
