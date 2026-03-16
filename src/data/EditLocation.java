@@ -14,7 +14,15 @@ import java.util.List;
  */
 public class EditLocation {
 
-    private static final String FILE_PATH = "data/locations.csv";
+    private final String FILE_PATH;
+
+    public EditLocation() {
+        this.FILE_PATH = "data/locations.csv";
+    }
+
+    public EditLocation(String filePath) {
+        this.FILE_PATH = filePath;
+    }
 
     public List<Location> getAllLocations() {
         List<Location> locations = new ArrayList<>();
