@@ -63,7 +63,7 @@ We will be following the standard IntelliJ IDEA code format
 
 ### Application Setup
 
-Ensure that either the latest JDK (JDK 25) is installed on your machine or your IDE of choice,
+Ensure that JDK21 is installed on your machine,
 Git-Happens recommends IntelliJ IDEA is installed and functional
 
 #### If using IntelliJ:
