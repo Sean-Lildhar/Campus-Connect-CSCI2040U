@@ -17,6 +17,8 @@
 target/
 build/
 bin/
+out/
+META-INF/
 
 # Dependency directories
 lib/
