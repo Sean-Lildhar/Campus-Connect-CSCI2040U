@@ -60,7 +60,17 @@ Campus Connect/
             User.java                       <- standard user (username, password, favourites)
             Admin.java                      <- admin extends User
             Location.java                   <- campus location (room number, type, status)
-    Main.java
+        Main.java
+    test-data                               <- temporary directory made during testing
+    tests
+        data
+            EditFavouritesTest              <- test the EditFavourites class
+            EditLocationTest                <- test the EditLocation class
+            EditUserTest                    <- test the EditUser class
+        model
+            AdminTest                       <- test the Admin class
+            LocationTest                    <- test the Location class
+            UserTest                        <- test the User class
     .gitignore
     Campus-Connect-CSCI2040U.iml
     Campus-Connect.jar
