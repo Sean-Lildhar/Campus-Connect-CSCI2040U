@@ -75,6 +75,7 @@ Campus Connect/
     .gitignore
     Campus-Connect-CSCI2040U.iml
     Campus-Connect.jar                      <- easily executable JAR file
+    pom.xml
     README.md
 /                                
 ```
