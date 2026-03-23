@@ -98,13 +98,7 @@ public class MainFrame extends JFrame {
             panel.add(buildAdminTreePanel(), BorderLayout.CENTER);
         } else {
             panel.setBorder(BorderFactory.createTitledBorder("Campus Map"));
-            //Placeholder — will be replaced with an image in a future iteration
-            JLabel placeholder = new JLabel(
-                    "Campus map will be displayed here",
-                    SwingConstants.CENTER);
-            placeholder.setFont(new Font("Arial", Font.ITALIC, 14));
-            placeholder.setForeground(Color.GRAY);
-            panel.add(placeholder, BorderLayout.CENTER);
+            panel.add(new MapPanel(), BorderLayout.CENTER);
         }
         return panel;
     }
