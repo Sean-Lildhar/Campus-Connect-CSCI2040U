@@ -34,13 +34,14 @@ Campus Connect/
         users.csv                           <- username,password,role
         locations.csv                       <- roomNumber,locationType,status
         favourites.csv                      <- username,roomNumber,...
+    maps/                                   <- contains imaages used to show campus maps
     META_INF/
-        MANIFEST.MF
+        MANIFEST.MF                         <- used in creation of JAR file
     out/
         production/
         Campus-Connect-CSCI2040U/
             META_INF/
-                MANIFEST.MF
+                MANIFEST.MF                 
     src/
         data/
             EditUser.java                   <- read/write users.csv
@@ -73,7 +74,7 @@ Campus Connect/
             UserTest                        <- test the User class
     .gitignore
     Campus-Connect-CSCI2040U.iml
-    Campus-Connect.jar
+    Campus-Connect.jar                      <- easily executable JAR file
     README.md
 /                                
 ```
