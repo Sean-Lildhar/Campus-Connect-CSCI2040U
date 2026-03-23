@@ -78,11 +78,10 @@ public class MapPanel extends JPanel {
         add(dropdownPanel, BorderLayout.NORTH);
 
         //Map image area
-        mapLabel = new JLabel("Select a building and floor to view the map.", SwingConstants.CENTER);
-        //mapLabel.setFont(new Font("Arial", Font.ITALIC, 13));
+        mapLabel = new JLabel();
+        mapLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        mapLabel.setVerticalAlignment(SwingConstants.CENTER);
         mapLabel.setForeground(Color.GRAY);
-        //mapLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        //mapLabel.setVerticalAlignment(SwingConstants.CENTER);
 
         scrollPane = new JScrollPane(mapLabel);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -91,6 +90,8 @@ public class MapPanel extends JPanel {
 
         buildingDropdown.addActionListener(e -> onBuildingSelected());
         floorDropdown.addActionListener(e -> onFloorSelected());
+
+        loadMap(MAPS_DIR + File.separator + "General.png", "Campus Overview");
     }
 
     private void onBuildingSelected() {
@@ -169,8 +170,6 @@ public class MapPanel extends JPanel {
     }
 
     private void showPlaceholder() {
-        mapLabel.setIcon(null);
-        mapLabel.setText("Select a building and floor to view the map.");
-        scrollPane.setViewportView(mapLabel);
+        loadMap(MAPS_DIR + File.separator + "General.png", "Campus Overview");
     }
 }

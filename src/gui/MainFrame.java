@@ -201,7 +201,7 @@ public class MainFrame extends JFrame {
         g.weightx = 0;
         panel.add(new JLabel("Location Type:"), g);
         locationTypeDropdown = new JComboBox<>(
-                new String[]{"restaurant", "washroom", "water fountain", "classroom"});
+                new String[]{"Select a Category to Search", "restaurant", "washroom", "water fountain", "classroom"});
         g.gridx = 1;
         g.weightx = 1;
         panel.add(locationTypeDropdown, g);
