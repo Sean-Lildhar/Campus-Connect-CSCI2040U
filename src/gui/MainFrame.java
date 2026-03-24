@@ -168,7 +168,7 @@ public class MainFrame extends JFrame {
     //Right Panel
     private JPanel buildRightPanel() {
         JPanel panel = new JPanel(new GridBagLayout());
-        panel.setBorder(BorderFactory.createTitledBorder("Navigation"));
+        panel.setBorder(BorderFactory.createTitledBorder("NavigationService"));
 
         GridBagConstraints g = new GridBagConstraints();
         g.fill = GridBagConstraints.HORIZONTAL;
