@@ -47,12 +47,14 @@ Campus Connect/
             EditUser.java                   <- read/write users.csv
             EditLocation.java               <- read/write locations.csv
             EditFavourites.java             <- read/write favourites.csv
+            NavigationService.java          <- mock service for test cases
         gui/
             AdminScreen.java                <- admin room-status editor popup
             CreateAccountScreen.java        <- new-account popup
             FavouritesScreen.java           <- favourites list popup
             LoginFrame.java                 <- login screen
             MainFrame.java                  <- main window (JSplitPane)
+            MapPanel.java                   <- map panel                    
             SearchScreen.java               <- location search results popup
             UserPerms.java                  <- allows admin to change user perms
         META-INF/
@@ -61,6 +63,8 @@ Campus Connect/
             User.java                       <- standard user (username, password, favourites)
             Admin.java                      <- admin extends User
             Location.java                   <- campus location (room number, type, status)
+            RouteStep.java                  <- mock class for test cases
+            Waypoint.java                   <- mock class for test cases 
         Main.java
     test-data                               <- temporary directory made during testing
     tests
@@ -68,6 +72,8 @@ Campus Connect/
             EditFavouritesTest              <- test the EditFavourites class
             EditLocationTest                <- test the EditLocation class
             EditUserTest                    <- test the EditUser class
+            NavigationTest                  <- test the Navigation
+            TestNavService                  <- mock mapping for testing
         model
             AdminTest                       <- test the Admin class
             LocationTest                    <- test the Location class
