@@ -1,9 +1,8 @@
 package gui;
 
-import data.EditFavourites;
-import data.EditLocation;
-import data.EditUser;
+import data.*;
 import model.Location;
+import model.RouteStep;
 import model.User;
 
 import javax.swing.*;
@@ -318,10 +317,29 @@ public class MainFrame extends JFrame {
             return;
         }
 
-        //Placeholder — pathfinding later
         JOptionPane.showMessageDialog(this,
                 "Calculating optimal path from '" + start + "' to '" + dest + "'...",
                 "Navigating", JOptionPane.INFORMATION_MESSAGE);
+
+        NavigationService navService = new DijkstraNavigationService();
+        List<RouteStep> steps = navService.getDirections(start, dest);
+
+        if (steps.isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "No path found between '" + start + "' and '" + dest + "'.",
+                    "No Route", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < steps.size(); i++) {
+            sb.append(i + 1).append(". ").append(steps.get(i).getInstruction()).append("\n");
+        }
+
+        JOptionPane.showMessageDialog(this,
+                sb.toString(),
+                "Directions: " + start + " to " + dest,
+                JOptionPane.INFORMATION_MESSAGE);
     }
 
     private void handleSearch() {
