@@ -7,14 +7,17 @@ import java.io.*;
 import java.util.*;
 public class CampusGraph {
 
-    private static final class Edge {
-        final String to;
-        final int weight;
-        Edge(String to, int weight) { this.to = to; this.weight = weight; }
+    private static final class Flag {
+        final String area;
+        final int weight = 1;
+
+        Flag(String area) {
+            this.area = area;
+        }
     }
 
     private final Map<String, Waypoint>    nodes   = new HashMap<>();
-    private final Map<String, List<Edge>>  adjList = new HashMap<>();
+    private final Map<String, Flag>  adjList = new HashMap<>();
 
     public CampusGraph(String filePath) {
         load(filePath);
@@ -28,35 +31,17 @@ public class CampusGraph {
             String line;
             while ((line = br.readLine()) != null) {
                 line = line.trim();
-                if (line.isEmpty() || line.startsWith("#")) continue;
-
-                String[] parts = line.split(",");
-                if (parts.length < 4) continue;
-
-                String id       = parts[0].trim();
-                String desc     = parts[1].trim();
-                String building = parts[2].trim();
-                int    floor;
-                try {
-                    floor = Integer.parseInt(parts[3].trim());
-                } catch (NumberFormatException e) {
-                    System.err.println("CampusGraph: bad floor value for node " + id);
+                if (line.isEmpty()){
                     continue;
                 }
 
-                nodes.put(id, new Waypoint(id, desc, building, floor));
+                String[] parts = line.split(",");
+                String id = parts[0].trim();
+                nodes.put(id, new Waypoint(id));
 
-                List<Edge> edges = new ArrayList<>();
-                for (int i = 4; i + 1 < parts.length; i += 2) {
-                    String neighbour = parts[i].trim();
-                    try {
-                        int weight = Integer.parseInt(parts[i + 1].trim());
-                        edges.add(new Edge(neighbour, weight));
-                    } catch (NumberFormatException e) {
-                        System.err.println("CampusGraph: bad weight for edge " + id + "->" + neighbour);
-                    }
-                }
-                adjList.put(id, edges);
+                String flagString = parts[3].trim();
+                Flag newFlag = new Flag(flagString);
+                adjList.put(id, newFlag);
             }
         } catch (IOException e) {
             System.err.println("CampusGraph.load error: " + e.getMessage());
@@ -92,14 +77,14 @@ public class CampusGraph {
             int currentDist = dist.get(current);
             if (currentDist == Integer.MAX_VALUE) break;
 
-            for (Edge edge : adjList.getOrDefault(current, Collections.emptyList())) {
-                if (!nodes.containsKey(edge.to)) continue;
+            for (Flag flag : adjList.getOrDefault(current, null)) {
+                if (!nodes.containsKey(flag.area)) continue;
 
-                int candidate = currentDist + edge.weight;
-                if (candidate < dist.getOrDefault(edge.to, Integer.MAX_VALUE)) {
-                    dist.put(edge.to, candidate);
-                    prev.put(edge.to, current);
-                    pq.add(edge.to);
+                int candidate = currentDist + flag.weight;
+                if (candidate < dist.getOrDefault(flag.area, Integer.MAX_VALUE)) {
+                    dist.put(flag.area, candidate);
+                    prev.put(flag.area, current);
+                    pq.add(flag.area);
                 }
             }
         }
@@ -132,19 +117,19 @@ public class CampusGraph {
 
             if (!prev.getBuilding().equals(curr.getBuilding())) {
                 instruction = "Exit " + friendlyBuilding(prev.getBuilding())
-                        + " and head towards " + curr.getDescription();
+                        + " and head towards " + curr.getFloor() + curr.getBuilding();
 
             } else if (prev.getFloor() != curr.getFloor()) {
                 String direction = curr.getFloor() > prev.getFloor() ? "up" : "down";
                 instruction = "Take the stairs or elevator " + direction
                         + " to floor " + curr.getFloor()
-                        + ": " + curr.getDescription();
+                        + ": " + curr.getFloor() + curr.getBuilding();
 
             } else if (isLast) {
-                instruction = "Arrive at " + curr.getDescription();
+                instruction = "Arrive at " + curr.getFloor() + curr.getBuilding();
 
             } else {
-                instruction = "Continue along the hallway to " + curr.getDescription();
+                instruction = "Continue along the hallway to " + curr.getFloor() + curr.getBuilding();
             }
 
             steps.add(new RouteStep(instruction, curr.getId()));
