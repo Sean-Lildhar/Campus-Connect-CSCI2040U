@@ -13,8 +13,7 @@ public class NavigationTest {
 
     @BeforeEach
     void setUp() {
-        //Replace with this later: navService = new BFSNavigationService();
-        navService = new TestNavService();
+        navService = new DijkstraNavigationService();
     }
 
     @Test
