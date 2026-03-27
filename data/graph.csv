@@ -1,0 +1,18 @@
+# nodeId,description,building,floor,neighbour1,weight1,neighbour2,weight2,...
+
+SCI_101,Room 101 (Science),SCI,1,SCI_HALL_F1,5
+SCI_105,Room 105 (Science),SCI,1,SCI_HALL_F1,5
+SCI_HALL_F1,Science Building Floor 1 Hallway,SCI,1,SCI_101,5,SCI_105,5,SCI_STAIR_A1,15,SCI_EXIT,20
+SCI_STAIR_A1,Science Building Stairwell A (Floor 1),SCI,1,SCI_HALL_F1,15,SCI_STAIR_A2,20
+SCI_EXIT,Science Building South Exit,SCI,1,SCI_HALL_F1,20,COURTYARD,15
+
+SCI_202,Room 202 (Science),SCI,2,SCI_HALL_F2,5
+SCI_HALL_F2,Science Building Floor 2 Hallway,SCI,2,SCI_202,5,SCI_STAIR_A2,15
+SCI_STAIR_A2,Science Building Stairwell A (Floor 2),SCI,2,SCI_HALL_F2,15,SCI_STAIR_A1,20
+
+
+COURTYARD,Outdoor Courtyard,OUTDOOR,0,SCI_EXIT,15,BIT_ENTRANCE,20
+
+BIT_ENTRANCE,Business Building Entrance,BIT,1,COURTYARD,20,BIT_HALL_F1,10
+BIT_101,Room 101 (Business),BIT,1,BIT_HALL_F1,5
+BIT_HALL_F1,Business Building Floor 1 Hallway,BIT,1,BIT_ENTRANCE,10,BIT_101,5

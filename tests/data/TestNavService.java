@@ -33,10 +33,10 @@ public class TestNavService implements NavigationService {
 
     @Override
     public List<RouteStep> getDirections(String startRoom, String endRoom) {
-//        if (startRoom.equals(endRoom)) {
+       if (startRoom.equals(endRoom)) {
             return new ArrayList<>();
-//        }
-//        String key = startRoom + "->" + endRoom;
-//        return testPaths.getOrDefault(key, new ArrayList<>());
+        }
+        String key = startRoom + "->" + endRoom;
+        return testPaths.getOrDefault(key, new ArrayList<>());
     }
 }
