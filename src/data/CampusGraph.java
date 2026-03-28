@@ -74,10 +74,6 @@ public class CampusGraph {
         }
     }
 
-    public boolean containsNode(String id) {
-        return nodes.containsKey(id);
-    }
-
     public List<RouteStep> dijkstra(String startId, String endId) {
         if (!nodes.containsKey(startId) || !nodes.containsKey(endId)) {
             return Collections.emptyList();
@@ -120,11 +116,10 @@ public class CampusGraph {
             return Collections.emptyList();
         }
 
-        return buildInstructions(reconstructPath(prev, startId, endId));
+        return buildInstructions(reconstructPath(prev, endId));
     }
 
-    private List<String> reconstructPath(Map<String, String> prev,
-                                         String startId, String endId) {
+    private List<String> reconstructPath(Map<String, String> prev, String endId) {
         LinkedList<String> path = new LinkedList<>();
         for (String at = endId; at != null; at = prev.get(at)) {
             path.addFirst(at);
@@ -194,7 +189,7 @@ public class CampusGraph {
         }
 
         //Hallway to Room
-        if (prevIsHall && !currIsHall) {
+        if (prevIsHall) {
             return "Enter " + currName;
         }
 
@@ -252,7 +247,7 @@ public class CampusGraph {
         StringBuilder result = new StringBuilder();
 
         for (String word : words) {
-            if (word.length() > 0) {
+            if (!word.isEmpty()) {
                 result.append(Character.toUpperCase(word.charAt(0)))
                         .append(word.substring(1).toLowerCase())
                         .append(" ");
@@ -260,16 +255,5 @@ public class CampusGraph {
         }
 
         return result.toString().trim();
-    }
-
-    private String friendlyBuilding(String code) {
-        switch (code) {
-            case "SCI":     return "the Science Building";
-            case "BIT":     return "the Business Building";
-            case "SHA":     return "Shawenjigewining Hall";
-            case "SIR":     return "the Software Informatics and Research Centre";
-            case "OUTDOOR": return "the campus path";
-            default:        return code;
-        }
     }
 }
