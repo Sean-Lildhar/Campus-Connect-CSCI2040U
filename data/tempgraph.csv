@@ -1,0 +1,18 @@
+SCI1620,classroom,open,0,Lab Hallway,2
+SCI1640,classroom,open,0,Lab Hallway,2
+SCI1660,classroom,open,0,Lab Hallway,2
+SCI1004,classroom,open,0,Lab Hallway,2
+SCI1520,classroom,open,0,Lab Hallway,2
+SCI1540,classroom,open,0,Lab Hallway,2
+SCI1460,classroom,open,0,Lab Hallway,2
+SCI1440,classroom,open,0,Lab Hallway,2
+SCI1420,classroom,open,0,Lab Hallway,2
+SCI1407,classroom,open,0,Lab Hallway,2
+SCI1350,classroom,open,0,Lecture Hallway,2
+SCI1220,classroom,open,0,Lecture Hallway,2
+SCI1240,classroom,open,0,Lecture Hallway,2
+SCI1120,classroom,open,0,Lecture Hallway,2
+SCI1140,classroom,open,0,Lecture Hallway,2
+
+Lab Hallway,LAB Hallway,SCI,1,SCI1620,2,SCI1640,2,SCI1660,2,SCI1004,2,SCI1520,2,SCI1540,2,SCI1460,2,SCI1440,2,SCI1420,2,SCI1407,2,Lecture Hallway,4
+Lecture Hallway,LECTURE Hallway,SCI,1,SCI1350,2,SCI1220,2,SCI1240,2,SCI1120,2,SCI1140,2,Lab Hallway,4

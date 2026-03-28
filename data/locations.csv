@@ -1,5 +1,5 @@
-SCI1620,classroom,open,Lab Area
-SCI1640,classroom,open,Lab Area
+SCI1620,classroom,open
+SCI1640,classroom,open
 SCI1660,classroom,open
 SCI1004,classroom,open
 SCI1520,classroom,open
@@ -193,7 +193,3 @@ SIR4207(women),washroom,open
 SCI,water fountain,open
 BIT,water fountain,open
 SHA,water fountain,open
-
-TEST LOCATIONS (DELETE LATER):
-SCI_101,classroom,open
-BIT_101,classroom,open
