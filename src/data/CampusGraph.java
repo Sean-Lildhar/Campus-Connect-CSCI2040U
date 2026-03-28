@@ -198,7 +198,7 @@ public class CampusGraph {
             return "Enter " + currName;
         }
 
-        //Room → Room
+        //Room to Room
         return "Proceed to " + currName;
     }
 
