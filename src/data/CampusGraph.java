@@ -7,17 +7,18 @@ import java.io.*;
 import java.util.*;
 public class CampusGraph {
 
-    private static final class Flag {
-        final String area;
-        final int weight = 1;
+    private static final class Edge {
+        final String neighborId;
+        final int weight;
 
-        Flag(String area) {
-            this.area = area;
+        Edge(String neighborId, int weight) {
+            this.neighborId = neighborId;
+            this.weight = weight;
         }
     }
 
-    private final Map<String, Waypoint>    nodes   = new HashMap<>();
-    private final Map<String, Flag>  adjList = new HashMap<>();
+    private final Map<String, Waypoint>       nodes   = new HashMap<>();
+    private final Map<String, List<Edge>>     adjList = new HashMap<>();
 
     public CampusGraph(String filePath) {
         load(filePath);
@@ -31,17 +32,41 @@ public class CampusGraph {
             String line;
             while ((line = br.readLine()) != null) {
                 line = line.trim();
-                if (line.isEmpty()){
+                if (line.isEmpty() || line.startsWith("#")) {
                     continue;
                 }
 
                 String[] parts = line.split(",");
-                String id = parts[0].trim();
-                nodes.put(id, new Waypoint(id));
+                if (parts.length < 4) continue;
 
-                String flagString = parts[3].trim();
-                Flag newFlag = new Flag(flagString);
-                adjList.put(id, newFlag);
+                // Parse node info: nodeId,description,building,floor
+                String id = parts[0].trim();
+                String description = parts[1].trim();
+                String building = parts[2].trim();
+                int floor;
+                try {
+                    floor = Integer.parseInt(parts[3].trim());
+                } catch (NumberFormatException e) {
+                    floor = 0;
+                }
+
+                nodes.put(id, new Waypoint(id, description, building, floor));
+
+                // Parse neighbors: neighbour1,weight1,neighbour2,weight2,...
+                List<Edge> edges = new ArrayList<>();
+                for (int i = 4; i < parts.length; i += 2) {
+                    if (i + 1 < parts.length) {
+                        String neighborId = parts[i].trim();
+                        int weight;
+                        try {
+                            weight = Integer.parseInt(parts[i + 1].trim());
+                        } catch (NumberFormatException e) {
+                            weight = 1;
+                        }
+                        edges.add(new Edge(neighborId, weight));
+                    }
+                }
+                adjList.put(id, edges);
             }
         } catch (IOException e) {
             System.err.println("CampusGraph.load error: " + e.getMessage());
@@ -77,14 +102,15 @@ public class CampusGraph {
             int currentDist = dist.get(current);
             if (currentDist == Integer.MAX_VALUE) break;
 
-            for (Flag flag : adjList.getOrDefault(current, null)) {
-                if (!nodes.containsKey(flag.area)) continue;
+            List<Edge> neighbors = adjList.getOrDefault(current, Collections.emptyList());
+            for (Edge edge : neighbors) {
+                if (!nodes.containsKey(edge.neighborId)) continue;
 
-                int candidate = currentDist + flag.weight;
-                if (candidate < dist.getOrDefault(flag.area, Integer.MAX_VALUE)) {
-                    dist.put(flag.area, candidate);
-                    prev.put(flag.area, current);
-                    pq.add(flag.area);
+                int candidate = currentDist + edge.weight;
+                if (candidate < dist.getOrDefault(edge.neighborId, Integer.MAX_VALUE)) {
+                    dist.put(edge.neighborId, candidate);
+                    prev.put(edge.neighborId, current);
+                    pq.add(edge.neighborId);
                 }
             }
         }
@@ -97,7 +123,7 @@ public class CampusGraph {
     }
 
     private List<String> reconstructPath(Map<String, String> prev,
-                                          String startId, String endId) {
+                                         String startId, String endId) {
         LinkedList<String> path = new LinkedList<>();
         for (String at = endId; at != null; at = prev.get(at)) {
             path.addFirst(at);
@@ -111,31 +137,54 @@ public class CampusGraph {
         for (int i = 1; i < path.size(); i++) {
             Waypoint prev = nodes.get(path.get(i - 1));
             Waypoint curr = nodes.get(path.get(i));
-            boolean  isLast = (i == path.size() - 1);
+            boolean isLast = (i == path.size() - 1);
 
-            String instruction;
-
-            if (!prev.getBuilding().equals(curr.getBuilding())) {
-                instruction = "Exit " + friendlyBuilding(prev.getBuilding())
-                        + " and head towards " + curr.getFloor() + curr.getBuilding();
-
-            } else if (prev.getFloor() != curr.getFloor()) {
-                String direction = curr.getFloor() > prev.getFloor() ? "up" : "down";
-                instruction = "Take the stairs or elevator " + direction
-                        + " to floor " + curr.getFloor()
-                        + ": " + curr.getFloor() + curr.getBuilding();
-
-            } else if (isLast) {
-                instruction = "Arrive at " + curr.getFloor() + curr.getBuilding();
-
-            } else {
-                instruction = "Continue along the hallway to " + curr.getFloor() + curr.getBuilding();
-            }
-
+            String instruction = generateInstruction(prev, curr, isLast);
             steps.add(new RouteStep(instruction, curr.getId()));
         }
 
         return steps;
+    }
+
+    private String generateInstruction(Waypoint prev, Waypoint curr, boolean isLast) {
+        // Check if we're moving between buildings
+        if (!prev.getBuilding().equals(curr.getBuilding())) {
+            return "Exit " + friendlyBuilding(prev.getBuilding())
+                    + " and head to " + friendlyBuilding(curr.getBuilding());
+        }
+
+        // Check if we're changing floors
+        if (prev.getFloor() != curr.getFloor()) {
+            String direction = curr.getFloor() > prev.getFloor() ? "up" : "down";
+            return "Take the stairs or elevator " + direction
+                    + " to floor " + curr.getFloor();
+        }
+
+        // Same floor navigation
+        String desc = curr.getDescription();
+
+        // If this is the final destination
+        if (isLast) {
+            return "Arrive at " + desc;
+        }
+
+        // Check if it's a hallway
+        if (desc.toLowerCase().contains("hallway") || desc.toLowerCase().contains("hall")) {
+            return "Continue along the " + desc.toLowerCase();
+        }
+
+        // Check if it's a stairwell or elevator
+        if (desc.toLowerCase().contains("stair") || desc.toLowerCase().contains("elevator")) {
+            return "Head to " + desc;
+        }
+
+        // Check if it's an exit or entrance
+        if (desc.toLowerCase().contains("exit") || desc.toLowerCase().contains("entrance")) {
+            return "Go to " + desc;
+        }
+
+        // Default: just head towards the waypoint
+        return "Head towards " + desc;
     }
 
     private String friendlyBuilding(String code) {
