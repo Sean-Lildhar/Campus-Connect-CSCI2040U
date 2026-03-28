@@ -41,8 +41,9 @@ public class CampusGraph {
 
                 // Parse node info: nodeId,description,building,floor
                 String id = parts[0].trim();
-                String description = parts[1].trim();
-                String building = parts[2].trim();
+                String locationType = parts[1].trim();
+                String description = "Room " + id;
+                String building = id.substring(0, 3);
                 int floor;
                 try {
                     floor = Integer.parseInt(parts[3].trim());
@@ -50,7 +51,7 @@ public class CampusGraph {
                     floor = 0;
                 }
 
-                nodes.put(id, new Waypoint(id, description, building, floor));
+                nodes.put(id, new Waypoint(id, description, building, floor, locationType));
 
                 // Parse neighbors: neighbour1,weight1,neighbour2,weight2,...
                 List<Edge> edges = new ArrayList<>();
@@ -147,44 +148,79 @@ public class CampusGraph {
     }
 
     private String generateInstruction(Waypoint prev, Waypoint curr, boolean isLast) {
-        // Check if we're moving between buildings
+
+        String prevType = prev.getLocationType().toLowerCase();
+        String currType = curr.getLocationType().toLowerCase();
+
+        boolean prevIsHall = prevType.equals("hallway");
+        boolean currIsHall = currType.equals("hallway");
+
+        String prevName = formatName(prev);
+        String currName = formatName(curr);
+
+        //Building transition
         if (!prev.getBuilding().equals(curr.getBuilding())) {
-            return "Exit " + friendlyBuilding(prev.getBuilding())
-                    + " and head to " + friendlyBuilding(curr.getBuilding());
+            return "Exit " + prevName + " and head to " + currName;
         }
 
-        // Check if we're changing floors
+        //Floor transition
         if (prev.getFloor() != curr.getFloor()) {
             String direction = curr.getFloor() > prev.getFloor() ? "up" : "down";
             return "Take the stairs or elevator " + direction
                     + " to floor " + curr.getFloor();
         }
 
-        // Same floor navigation
-        String desc = curr.getDescription();
-
-        // If this is the final destination
+        //Final destination
         if (isLast) {
-            return "Arrive at " + desc;
+            return "Arrive at " + currName;
         }
 
-        // Check if it's a hallway
-        if (desc.toLowerCase().contains("hallway") || desc.toLowerCase().contains("hall")) {
-            return "Continue along the " + desc.toLowerCase();
+        //Room to Hallway
+        if (!prevIsHall && currIsHall) {
+            return "Exit " + prevName + " into the " + currName;
         }
 
-        // Check if it's a stairwell or elevator
-        if (desc.toLowerCase().contains("stair") || desc.toLowerCase().contains("elevator")) {
-            return "Head to " + desc;
+        //Hallway to Hallway
+        if (prevIsHall && currIsHall) {
+            return "Continue through the " + currName;
         }
 
-        // Check if it's an exit or entrance
-        if (desc.toLowerCase().contains("exit") || desc.toLowerCase().contains("entrance")) {
-            return "Go to " + desc;
+        //Hallway to Room
+        if (prevIsHall && !currIsHall) {
+            return "Enter " + currName;
         }
 
-        // Default: just head towards the waypoint
-        return "Head towards " + desc;
+        //Room → Room
+        return "Proceed to " + currName;
+    }
+
+    private String formatName(Waypoint wp) {
+
+        String type = wp.getLocationType().toLowerCase();
+        String id = wp.getId();
+
+        //Room
+        if (type.equals("classroom")) {
+            return "Room " + id;
+        }
+
+        //Hallway
+        if (type.equals("hallway")) {
+            return id.replace("_", " ").toLowerCase();
+        }
+
+        //Entrance / Exit
+        if (type.contains("entrance") || type.contains("exit")) {
+            return id.replace("_", " ").toLowerCase();
+        }
+
+        //Stair / Elevator
+        if (type.contains("stair") || type.contains("elevator")) {
+            return id.replace("_", " ").toLowerCase();
+        }
+
+        //Default
+        return id;
     }
 
     private String friendlyBuilding(String code) {
