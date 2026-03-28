@@ -166,8 +166,16 @@ public class CampusGraph {
         //Floor transition
         if (prev.getFloor() != curr.getFloor()) {
             String direction = curr.getFloor() > prev.getFloor() ? "up" : "down";
-            return "Take the stairs or elevator " + direction
-                    + " to floor " + curr.getFloor();
+
+            String type = curr.getLocationType().toLowerCase();
+
+            if (type.contains("stair")) {
+                return "Take the stairs " + direction + " to floor " + curr.getFloor();
+            } else if (type.contains("elevator")) {
+                return "Take the elevator " + direction + " to floor " + curr.getFloor();
+            } else {
+                return "Go " + direction + " to floor " + curr.getFloor();
+            }
         }
 
         //Final destination
@@ -206,21 +214,52 @@ public class CampusGraph {
 
         //Hallway
         if (type.equals("hallway")) {
-            return id.replace("_", " ").toLowerCase();
+            return cleanName(id);
         }
 
         //Entrance / Exit
         if (type.contains("entrance") || type.contains("exit")) {
-            return id.replace("_", " ").toLowerCase();
+            return cleanName(id);
         }
 
-        //Stair / Elevator
-        if (type.contains("stair") || type.contains("elevator")) {
-            return id.replace("_", " ").toLowerCase();
+        //Stairs
+        if (type.contains("stair")) {
+            return "stairs";
+        }
+
+        //Elevator
+        if (type.contains("elevator")) {
+            return "elevator";
         }
 
         //Default
-        return id;
+        return cleanName(id);
+    }
+
+    private String cleanName(String id) {
+
+        //Remove floor suffixes like F1, F2
+        id = id.replaceAll("F\\d+", "");
+
+        //Replace underscores
+        id = id.replace("_", " ");
+
+        //Trim extra spaces
+        id = id.trim();
+
+        //Capitalize words
+        String[] words = id.split(" ");
+        StringBuilder result = new StringBuilder();
+
+        for (String word : words) {
+            if (word.length() > 0) {
+                result.append(Character.toUpperCase(word.charAt(0)))
+                        .append(word.substring(1).toLowerCase())
+                        .append(" ");
+            }
+        }
+
+        return result.toString().trim();
     }
 
     private String friendlyBuilding(String code) {

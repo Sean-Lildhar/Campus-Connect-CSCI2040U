@@ -317,10 +317,6 @@ public class MainFrame extends JFrame {
             return;
         }
 
-        JOptionPane.showMessageDialog(this,
-                "Calculating optimal path from '" + start + "' to '" + dest + "'...",
-                "Navigating", JOptionPane.INFORMATION_MESSAGE);
-
         NavigationService navService = new DijkstraNavigationService();
         List<RouteStep> steps = navService.getDirections(start, dest);
 
