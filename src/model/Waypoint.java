@@ -2,30 +2,19 @@ package model;
 
 public class Waypoint {
     private final String id;
+    private final String description;
+    private final String building;
+    private final int floor;
 
-    public Waypoint(String id) {
+    public Waypoint(String id, String description, String building, int floor) {
         this.id = id;
+        this.description = description;
+        this.building = building;
+        this.floor = floor;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public String getBuilding() {
-        String id = this.id;
-        String building = id.substring(0, 2);
-        return building;
-    }
-
-    public int getFloor() {
-        String id = this.id;
-        String floorString = id.substring(3, 3);
-        try{
-            int floor = Integer.parseInt(floorString);
-            return floor;
-        } catch (NumberFormatException e){
-            System.err.println("Number Format Exception: " + e);
-        }
-        return 0;
-    }
+    public String getId() { return id; }
+    public String getDescription() { return description; }
+    public String getBuilding() { return building; }
+    public int getFloor() { return floor; }
 }
