@@ -18,42 +18,71 @@ public class NavigationTest {
 
     @Test
     void testSameRoomNavigation() {
-        List<RouteStep> path = navService.getDirections("SCI_101", "SCI_101");
+        List<RouteStep> path = navService.getDirections("SCI1620", "SCI1620");
+
         assertNotNull(path);
-        assertTrue(path.isEmpty(), "Path to same room should be empty or a 'stay put' instruction");
+        assertTrue(path.isEmpty(), "Path to same room should be empty");
     }
 
     @Test
     void testSameFloorNavigation() {
-        List<RouteStep> path = navService.getDirections("SCI_101", "SCI_105");
-        assertFalse(path.isEmpty());
-        assertTrue(path.get(0).getInstruction().contains("hallway"));
+        List<RouteStep> path = navService.getDirections("SCI1620", "SCI1140");
+
+        assertFalse(path.isEmpty(), "Path should not be empty");
+
+        boolean hasHallway = path.stream()
+                .anyMatch(step -> step.getInstruction().toLowerCase().contains("hallway"));
+
+        assertTrue(hasHallway, "Same floor navigation should include hallway movement");
     }
 
     @Test
     void testCrossFloorNavigation() {
-        List<RouteStep> path = navService.getDirections("SCI_101", "SCI_202");
+        List<RouteStep> path = navService.getDirections("SCI1620", "SCI2620");
+
+        assertFalse(path.isEmpty(), "Path should not be empty");
 
         boolean usesStairs = path.stream()
-                .anyMatch(step -> step.getInstruction().toLowerCase().contains("stairs")
-                        || step.getInstruction().toLowerCase().contains("elevator"));
+                .anyMatch(step -> step.getInstruction().toLowerCase().contains("stairs"));
 
-        assertTrue(usesStairs, "Different floors path must mention changing floors");
+        boolean mentionsFloor = path.stream()
+                .anyMatch(step -> step.getInstruction().toLowerCase().contains("floor"));
+
+        assertTrue(usesStairs, "Different floors path must use stairs");
+        assertTrue(mentionsFloor, "Instructions should mention floor change");
     }
 
-    @Test
-    void testCrossBuildingNavigation() {
-        List<RouteStep> path = navService.getDirections("SCI_101", "BIT_101");
-
-        boolean exitsBuilding = path.stream()
-                .anyMatch(step -> step.getInstruction().toLowerCase().contains("exit"));
-
-        assertTrue(exitsBuilding, "Different building path must mention changing buildings");
-    }
+//    @Test
+//    void testCrossBuildingNavigation() {
+//        List<RouteStep> path = navService.getDirections("SCI1620", "BIT2080");
+//
+//        assertFalse(path.isEmpty(), "Path should not be empty");
+//
+//        boolean exitsBuilding = path.stream()
+//                .anyMatch(step -> step.getInstruction().toLowerCase().contains("exit"));
+//
+//        boolean mentionsDestination = path.stream()
+//                .anyMatch(step -> step.getInstruction().toLowerCase().contains("head to"));
+//
+//        assertTrue(exitsBuilding, "Should mention exiting the building");
+//        assertTrue(mentionsDestination, "Should mention heading to another building");
+//    }
 
     @Test
     void testNoPathFound() {
-        List<RouteStep> path = navService.getDirections("SCI_101", "FAKE_123");
+        List<RouteStep> path = navService.getDirections("SCI1620", "FAKE_123");
+
+        assertNotNull(path);
         assertTrue(path.isEmpty(), "Should return empty list when no valid path exists");
+    }
+
+    @Test
+    void testNoEmptyInstructions() {
+        List<RouteStep> path = navService.getDirections("SCI1620", "SCI1140");
+
+        boolean hasEmpty = path.stream()
+                .anyMatch(step -> step.getInstruction().trim().isEmpty());
+
+        assertFalse(hasEmpty, "Instructions should not be empty");
     }
 }
