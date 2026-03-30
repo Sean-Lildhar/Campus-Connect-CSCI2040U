@@ -2,6 +2,8 @@ package gui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -45,6 +47,9 @@ public class MapPanel extends JPanel {
     private final JLabel mapLabel;
     private final JScrollPane scrollPane;
 
+    private Point startPoint;
+    private Point startScroll;
+
     public MapPanel() {
         setLayout(new BorderLayout(0, 4));
         setBorder(BorderFactory.createEmptyBorder(6, 6, 6, 6));
@@ -86,7 +91,52 @@ public class MapPanel extends JPanel {
         scrollPane = new JScrollPane(mapLabel);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+
+        scrollPane.getHorizontalScrollBar().setPreferredSize(new Dimension(0,0));
+        scrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(0,0));
         add(scrollPane, BorderLayout.CENTER);
+
+        MouseAdapter dragMap = new MouseAdapter(){
+            @Override
+            public void mousePressed(MouseEvent e) {
+                startPoint = e.getPoint();
+                JViewport vp = scrollPane.getViewport();
+                startScroll = vp.getViewPosition();
+                scrollPane.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            }
+
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                if(startPoint == null) return;
+
+                int dx = e.getX() - startPoint.x;
+                int dy = e.getY() - startPoint.y;
+
+                JViewport vp = scrollPane.getViewport();
+                Dimension view = vp.getView().getPreferredSize();
+                Dimension extent = vp.getExtentSize();
+
+                int x1 = Math.max(0, view.width  - extent.width);
+                int y1 = Math.max(0, view.height - extent.height);
+
+                int x2 = Math.max(0, Math.min(x1, startScroll.x - dx));
+                int y2 = Math.max(0, Math.min(y1, startScroll.y - dy));
+
+                vp.setViewPosition(new Point(x2,y2));
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                startPoint = null;
+                startScroll = null;
+                scrollPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+            }
+        };
+
+        scrollPane.getViewport().addMouseListener(dragMap);
+        scrollPane.getViewport().addMouseMotionListener(dragMap);
+        mapLabel.addMouseListener(dragMap);
+        mapLabel.addMouseMotionListener(dragMap);
 
         buildingDropdown.addActionListener(e -> onBuildingSelected());
         floorDropdown.addActionListener(e -> onFloorSelected());
@@ -160,13 +210,17 @@ public class MapPanel extends JPanel {
         mapLabel.setToolTipText(description);
 
         //Resize JLabel to image size so scroll works correctly
-        mapLabel.setPreferredSize(new Dimension(
-                icon.getIconWidth(),
+        mapLabel.setPreferredSize(
+                new Dimension(icon.getIconWidth(),
                 icon.getIconHeight()));
+
+        mapLabel.setPreferredSize(new Dimension(icon.getIconWidth(), icon.getIconHeight()));
 
         scrollPane.setViewportView(mapLabel);
         scrollPane.revalidate();
         scrollPane.repaint();
+
+        SwingUtilities.invokeLater(() -> scrollPane.getViewport().setViewPosition(new Point(0,0)));
     }
 
     private void showPlaceholder() {
