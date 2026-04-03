@@ -83,7 +83,7 @@ public class SearchScreen extends JDialog {
     }
 
     private void showLocationOptions(Location loc) {
-        String[] options = {"Take me here", "Add to favourites", "Cancel", "Leave Review"};
+        String[] options = {"Take me here", "Add to favourites", "Cancel", "Leave Review", "Check Reviews"};
         int choice = JOptionPane.showOptionDialog(
                 this,
                 loc.toString(),
@@ -112,7 +112,15 @@ public class SearchScreen extends JDialog {
             }
         }
         else if (choice == 3){
-            System.out.println("leaving Review");
+            System.out.println("input 3");
+            this.dispose();
+            ReviewFrame reviewFrame = new ReviewFrame();
+            reviewFrame.ReviewFrame(loc.getRoomNumber(), currentUser.getUsername());
+            reviewFrame.setVisible(true);
+
+        }
+        else if (choice == 4){
+            System.out.println("viewing Reviews");
         }
     }
 }
