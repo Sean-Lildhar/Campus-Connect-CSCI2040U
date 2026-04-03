@@ -1,6 +1,7 @@
 package gui;
 
 import data.EditFavourites;
+import data.EditReviews;
 import model.Location;
 import model.User;
 
@@ -114,13 +115,24 @@ public class SearchScreen extends JDialog {
         else if (choice == 3){
             System.out.println("input 3");
             this.dispose();
-            ReviewFrame reviewFrame = new ReviewFrame();
-            reviewFrame.ReviewFrame(loc.getRoomNumber(), currentUser.getUsername());
+            ReviewFrame reviewFrame = new ReviewFrame(loc.getRoomNumber(), currentUser.getUsername());
             reviewFrame.setVisible(true);
 
         }
         else if (choice == 4){
             System.out.println("viewing Reviews");
+            EditReviews editReviews = new EditReviews();
+            List<String> reviews = editReviews.getRoomReviews(loc.getRoomNumber());
+            if(reviews.isEmpty()){
+                JOptionPane.showMessageDialog(this, "No Reviews", "Reviews", JOptionPane.INFORMATION_MESSAGE);
+            }else{
+                StringBuilder stringBuilder = new StringBuilder();
+                for(int i = 0; i < reviews.size(); i++){
+                    String review = reviews.get(i);
+                    stringBuilder.append(review).append("\n\n");
+                }
+                JOptionPane.showMessageDialog(this, stringBuilder.toString(), loc.getRoomNumber() + " Reviews", JOptionPane.INFORMATION_MESSAGE);
+            }
         }
     }
 }
