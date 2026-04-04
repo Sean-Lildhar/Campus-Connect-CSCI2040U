@@ -112,12 +112,10 @@ public class SearchScreen extends JDialog {
             }
         }
         else if (choice == 3){
-            System.out.println("input 3");
             this.dispose();
             new ReviewFrame().leaveReviewFrame(loc.getRoomNumber(), currentUser.getUsername());
         }
         else if (choice == 4){
-            System.out.println("input 4");
             this.dispose();
             new ReviewFrame().viewLocationReviews(loc.getRoomNumber());
         }

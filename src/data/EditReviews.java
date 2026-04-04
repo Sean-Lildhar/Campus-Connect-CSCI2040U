@@ -63,9 +63,8 @@ public class EditReviews {
         StringBuilder result = new StringBuilder();
         for (String[] review : getAllReviews()) {
             if (review[0].trim().equals(roomNumber)) {
-                System.out.println(review[2]);
                 result.append("User: ").append(review[1])
-                        .append("\nRating: ").append(review[2])
+                        .append("\nRating: ").append(review[2]).append(" out of 5 stars")
                         .append("\nReview: ").append(review[3])
                         .append("\n\n");
             }
