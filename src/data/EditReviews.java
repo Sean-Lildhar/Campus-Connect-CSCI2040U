@@ -1,35 +1,75 @@
 package data;
 
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EditReviews {
-    private final String filepath = "data/review.csv";
 
-    public void addReview(String user, String room, int rating, String text){
-        try(PrintWriter pw = new PrintWriter(new FileWriter(filepath, true))){
-            pw.println(user + "," + room + "," + rating + "," + text);
-        } catch (IOException e){
-            System.err.println("Error leaving a review");
+public class EditReviews {
+
+    private final String FILE_PATH;
+
+    public EditReviews() {
+        this.FILE_PATH = "data/reviews.csv";
+    }
+
+    public EditReviews(String filePath) {
+        this.FILE_PATH = filePath;
+    }
+
+    public void addReview(String roomNumber, String user, int rating, String reviewText) {
+        try (PrintWriter pw = new PrintWriter(new FileWriter(FILE_PATH, true))) {
+            pw.println(roomNumber + "," + user + "," + rating + "," + reviewText);
+        } catch (IOException e) {
+            System.err.println("EditReviews.addReview error: " + e.getMessage());
         }
     }
 
-    public List<String> getRoomReviews(String room){
-        List<String> reviews = new ArrayList<>();
+    public List<String[]> getAllReviews() {
+        List<String[]> reviews = new ArrayList<>();
+        File f = new File(FILE_PATH);
+        if (!f.exists()) return reviews;
 
-        try(BufferedReader bufferedReader = new BufferedReader(new FileReader(filepath))){
+        try (BufferedReader br = new BufferedReader(new FileReader(f))) {
             String line;
-            while((line = bufferedReader.readLine()) != null){
-                String cells[] = line.split(",", 4);
-                if(cells[1].equals(room)){
-                    reviews.add(cells[0] + " (" + cells[2] + " Star(s)): " + cells[3]);
+            while ((line = br.readLine()) != null) {
+                line = line.trim();
+                if (line.isEmpty()) continue;
+                String[] parts = line.split(",", 4);
+                if (parts.length == 4) {
+                    reviews.add(parts);
                 }
             }
-        } catch(IOException e){
-            System.err.println("Error loading reviews");
+        } catch (IOException e) {
+            System.err.println("EditReviews.getAllReviews error: " + e.getMessage());
         }
         return reviews;
+    }
+
+    public double getAverageRating(String roomNumber){
+        List<Integer> ratings = new ArrayList<>();
+        int total = 0;
+        double averageRating;
+        for (String[] review : getAllReviews()) {
+            if (review[0].trim().equals(roomNumber)) ratings.add(Integer.parseInt(review[2]));
+        }
+        for(int num : ratings)total+=num;
+
+        averageRating = Double.parseDouble(String.format("%.1f", (double) total / ratings.size()));
+        return averageRating;
+    }
+
+    public String getReviewsByRoom(String roomNumber) {
+        StringBuilder result = new StringBuilder();
+        for (String[] review : getAllReviews()) {
+            if (review[0].trim().equals(roomNumber)) {
+                System.out.println(review[2]);
+                result.append("User: ").append(review[1])
+                        .append("\nRating: ").append(review[2])
+                        .append("\nReview: ").append(review[3])
+                        .append("\n\n");
+            }
+        }
+        return result.toString();
     }
 }
