@@ -1,198 +1,290 @@
-SCI1620,classroom,open,0,SCI_LAB_HALL,2
-SCI1640,classroom,open,0,SCI_LAB_HALL,2
-SCI1660,classroom,open,0,SCI_LAB_HALL,2
-SCI1004,classroom,open,0,SCI_LAB_HALL,2
-SCI1520,classroom,open,0,SCI_LAB_HALL,2
-SCI1540,classroom,open,0,SCI_LAB_HALL,2
-SCI1460,classroom,open,0,SCI_LAB_HALL,2
-SCI1440,classroom,open,0,SCI_LAB_HALL,2
-SCI1420,classroom,open,0,SCI_LAB_HALL,2
-SCI1407,classroom,open,0,SCI_LAB_HALL,2
-SCI1350,classroom,open,0,SCI_LECTURE_HALL,2
-SCI1220,classroom,open,0,SCI_LECTURE_HALL,2
-SCI1240,classroom,open,0,SCI_LECTURE_HALL,2
-SCI1120,classroom,open,0,SCI_LECTURE_HALL,2
-SCI1140,classroom,open,0,SCI_LECTURE_HALL,2
-SCI2620,classroom,open,0
-SCI2640,classroom,open,0
-SCI2660,classroom,open,0
-SCI2520,classroom,open,0
-SCI2540,classroom,open,0
-SCI2460,classroom,open,0
-SCI2440,classroom,open,0
-SCI2420,classroom,open,0
-SCI2220,classroom,open,0
-SCI2230,classroom,open,0
-SCI2240,classroom,open,0
-SCI2120,classroom,open,0
-SCI2130,classroom,open,0
-SCI2140,classroom,open,0
-SCI3620,classroom,open,0
-SCI3640,classroom,open,0
-SCI3660,classroom,open,0
-SCI3680,classroom,open,0
-SCI3520,classroom,open,0
-SCI3470,classroom,open,0
-SCI3480,classroom,open,0
-SCI3460,classroom,open,0
-SCI3440,classroom,open,0
-SCI3420,classroom,open,0
-SCI3403,classroom,open,0
-SCI3402,classroom,open,0
-SCI3220,classroom,open,0
-SCI3230,classroom,open,0
-SCI3240,classroom,open,0
-SCI3120,classroom,open,0
-SCI3130,classroom,open,0
-SCI3140,classroom,open,0
-SCI4620,classroom,open,0
-SCI4640,classroom,open,0
-SCI4660,classroom,open,0
-SCI4680,classroom,open,0
-SCI4520,classroom,open,0
-SCI4540,classroom,open,0
-SCI4470,classroom,open,0
-SCI4480,classroom,open,0
-SCI4460,classroom,open,0
-SCI4440,classroom,open,0
-SCI4420,classroom,open,0
-SCI4410,classroom,open,0
-SCI4406,classroom,open,0
-SCI4403,classroom,open,0
-SCI4404,classroom,open,0
-SCI4220,classroom,open,0
-SCI4240,classroom,open,0
-SCI4260,classroom,open,0
-SCI4280,classroom,open,0
-SCI4160,classroom,open,0
-SCI4150,classroom,open,0
-SCI4130,classroom,open,0
-SCI4120,classroom,open,0
-SCI4170,classroom,open,0
-BIT2080,classroom,open,0
-BIT2058,classroom,open,0
-BIT2054,classroom,open,0
-BIT2050,classroom,open,0
-BIT2035,classroom,open,0
-BIT2034,classroom,open,0
-BIT2037,classroom,open,0
-BIT3053,classroom,open,0
-BIT3055,classroom,open,0
-BIT3070,classroom,open,0
-BIT3071,classroom,open,0
-BIT3072,classroom,open,0
-BIT3075,classroom,open,0
-BIT3078,classroom,open,0
-BIT3082,classroom,open,0
-BIT3085,classroom,open,0
-BIT3092,classroom,open,0
-BIT3095,classroom,open,0
-BIT3098,classroom,open,0
-BIT4043,classroom,open,0
-BIT4044,classroom,open,0
-BIT4045,classroom,open,0
-BIT4047,classroom,open,0
-BIT4049,classroom,open,0
-BIT4050,classroom,open,0
-BIT4070,classroom,open,0
-BIT4072,classroom,open,0
-BIT4078,classroom,open,0
-BIT4082,classroom,open,0
-BIT4085,classroom,open,0
-BIT4082,classroom,open,0
-BIT4088,classroom,open,0
-BIT4092,classroom,open,0
-BIT4095,classroom,open,0
-BIT4098,classroom,open,0
-SHA018,classroom,open,0
-SHA038,classroom,open,0
-SHA037,classroom,open,0
-SHA024,classroom,open,0
-SHA131,classroom,open,0
-SHA133,classroom,open,0
-SHA245,classroom,open,0
-SHA246,classroom,open,0
-SHA247,classroom,open,0
-SHA248,classroom,open,0
-SHA249,classroom,open,0
-SHA344,classroom,open,0
-SHA356,classroom,open,0
-SHA357,classroom,open,0
-SHA358,classroom,open,0
-SHA359,classroom,open,0
-SHA360,classroom,open,0
-SHA361,classroom,open,0
-SHA362,classroom,open,0
-SIR2010,classroom,open,0
-SIR2020,classroom,open,0
-SIR2030,classroom,open,0
-SIR2060,classroom,open,0
-SIR2070,classroom,open,0
-SIR3110,classroom,open,0
-SIR3120,classroom,open,0
-SIR3130,classroom,open,0
-SIR3150,classroom,open,0
-SIR3160,classroom,open,0
-SIR3310,classroom,open,0
-SIR3340,classroom,open,0
-SIR3130,classroom,open,0
-SIR4110,classroom,open,0
-SIR4120,classroom,open,0
-SIR4130,classroom,open,0
-SIR4140,classroom,open,0
-SIR4150,classroom,open,0
-SIR4160,classroom,open,0
-SIR4173,classroom,open,0
-SIR4310,classroom,open,0
-SIR4340,classroom,open,0
-SIR4360,classroom,open,0
-SIR4360,classroom,open,0
-SIR4362,classroom,open,0
-Tim Hortons,restaurant,open,0
-Subway,restaurant,open,0
-Hunter's Kitchen,restaurant,open,0
-Cha & Co. Boba Bar,restaurant,open,0
-SCI1299(men),washroom,open,0
-SCI1297(woman),washroom,open,0
-SCI1-MS2(men),washroom,open,0
-SCI1412(woman),washroom,open,0
-SCI2299(men),washroom.open,,0
-SCI2297(woman),washroom,open,0
-SCI2407(men),washroom,open,0
-SCI2408(woman),washroom,open,0
-SCI3299(men),washroom.open,,0
-SCI3297(woman),washroom,open,0
-SCI3407(men),washroom,open,0
-SCI3408(woman),washroom,open,0
-SCI4299(men),washroom.open,,0
-SCI4297(woman),washroom,open,0
-SCI4407(men),washroom,open,0
-SCI4408(woman),washroom,open,0
-BIT1043(men),washroom,open,0
-BIT1042(woman),washroom,open,0
-BIT2067,washroom,open,0
-BIT2066,washroom,open,0
-BIT3067,washroom,open,0
-BIT3066,washroom,open,0
-BIT4067,washroom,open,0
-BIT4066,washroom,open,0
-SHA105(men),washroom,open,0
-SHA106(woman),washroom,open,0
-SHA205(men),washroom,open,0
-SHA206(woman),washroom,open,0
-SHA305(men),washroom,open,0
-SHA306(woman),washroom,open,0
-SIR1209(men),washroom,open,0
-SIR1207(women),washroom,open,0
-SIR2209(men),washroom,open,0
-SIR2207(women),washroom,open,0
-SIR3209(men),washroom,open,0
-SIR3207(women),washroom,open,0
-SIR4209(men),washroom,open,0
-SIR4207(women),washroom,open,0
-SCI,water fountain,open,0
-BIT,water fountain,open,0
-SHA,water fountain,open,0
+# --- Polonsky Commons (OUTDOOR HUB) ---
+Polonsky_Commons,outdoor,open,1,SCI_ENTRANCE,5,BIT_ENTRANCE,5,SHA_ENTRANCE,5,SIR_ENTRANCE,15
 
-SCI_LAB_HALL,LAB Hallway,SCI,1,SCI1620,2,SCI1640,2,SCI1660,2,SCI1004,2,SCI1520,2,SCI1540,2,SCI1460,2,SCI1440,2,SCI1420,2,SCI1407,2,SCI_LECTURE_HALL,4
-SCI_LECTURE_HALL,LECTURE Hallway,SCI,1,SCI1350,2,SCI1220,2,SCI1240,2,SCI1120,2,SCI1140,2,SCI_LAB_HALL,4
+# --- ENTRANCES ---
+SCI_ENTRANCE,entrance,open,1,Polonsky_Commons,5,Lecture Hallway F1,2,Lab Hallway F1,2
+BIT_ENTRANCE,entrance,open,1,Polonsky_Commons,5,Business Hallway F1,2
+SHA_ENTRANCE,entrance,open,1,Polonsky_Commons,5,SHA Hallway F1,2
+SIR_ENTRANCE,entrance,open,1,Polonsky_Commons,15,SIRC Hallway F1,2
+
+# --- RESTAURANTS & FOUNTAINS ---
+Tim Hortons,restaurant,open,1,SHA Hallway F1,2
+Subway,restaurant,open,1,Lecture Hallway F1,2
+Hunter's Kitchen,restaurant,open,1,Business Hallway F1,2
+Cha & Co. Boba Bar,restaurant,open,1,Lab Hallway F1,2
+SCI_FOUNTAIN,water fountain,open,1,Lecture Hallway F1,2
+BIT_FOUNTAIN,water fountain,open,1,Business Hallway F1,2
+SHA_FOUNTAIN,water fountain,open,1,SHA Hallway F1,2
+
+# --- SCI BUILDING ---
+# Floor 1 Rooms
+SCI1620,classroom,open,1,Lab Hallway F1,2
+SCI1640,classroom,open,1,Lab Hallway F1,2
+SCI1660,classroom,open,1,Lab Hallway F1,2
+SCI1004,classroom,open,1,Lab Hallway F1,2
+SCI1520,classroom,open,1,Lab Hallway F1,2
+SCI1540,classroom,open,1,Lab Hallway F1,2
+SCI1460,classroom,open,1,Lab Hallway F1,2
+SCI1440,classroom,open,1,Lab Hallway F1,2
+SCI1420,classroom,open,1,Lab Hallway F1,2
+SCI1407,classroom,open,1,Lab Hallway F1,2
+SCI1412(woman),washroom,open,1,Lab Hallway F1,2
+SCI1350,classroom,open,1,Lecture Hallway F1,2
+SCI1220,classroom,open,1,Lecture Hallway F1,2
+SCI1240,classroom,open,1,Lecture Hallway F1,2
+SCI1120,classroom,open,1,Lecture Hallway F1,2
+SCI1140,classroom,open,1,Lecture Hallway F1,2
+SCI1299(men),washroom,open,1,Lecture Hallway F1,2
+SCI1297(woman),washroom,open,1,Lecture Hallway F1,2
+SCI1-MS2(men),washroom,open,1,Lecture Hallway F1,2
+
+# Floor 1 Hallways
+Lab Hallway F1,hallway,open,1,SCI1620,2,SCI1640,2,SCI1660,2,SCI1004,2,SCI1520,2,SCI1540,2,SCI1460,2,SCI1440,2,SCI1420,2,SCI1407,2,SCI1412(woman),2,Cha & Co. Boba Bar,2,Lecture Hallway F1,4,SCI_STAIRS_F1,1,SCI_ENTRANCE,2
+Lecture Hallway F1,hallway,open,1,SCI1350,2,SCI1220,2,SCI1240,2,SCI1120,2,SCI1140,2,SCI1299(men),2,SCI1297(woman),2,SCI1-MS2(men),2,Subway,2,SCI_FOUNTAIN,2,Lab Hallway F1,4,SCI_ENTRANCE,2
+
+# Floor 2 Rooms
+SCI2620,classroom,open,2,Lab Hallway F2,2
+SCI2640,classroom,open,2,Lab Hallway F2,2
+SCI2660,classroom,open,2,Lab Hallway F2,2
+SCI2520,classroom,open,2,Lab Hallway F2,2
+SCI2540,classroom,open,2,Lab Hallway F2,2
+SCI2460,classroom,open,2,Lab Hallway F2,2
+SCI2440,classroom,open,2,Lab Hallway F2,2
+SCI2420,classroom,open,2,Lab Hallway F2,2
+SCI2407(men),washroom,open,2,Lab Hallway F2,2
+SCI2408(woman),washroom,open,2,Lab Hallway F2,2
+SCI2220,classroom,open,2,Lecture Hallway F2,2
+SCI2230,classroom,open,2,Lecture Hallway F2,2
+SCI2240,classroom,open,2,Lecture Hallway F2,2
+SCI2120,classroom,open,2,Lecture Hallway F2,2
+SCI2130,classroom,open,2,Lecture Hallway F2,2
+SCI2140,classroom,open,2,Lecture Hallway F2,2
+SCI2299(men),washroom,open,2,Lecture Hallway F2,2
+SCI2297(woman),washroom,open,2,Lecture Hallway F2,2
+
+# Floor 2 Hallways
+Lab Hallway F2,hallway,open,2,SCI2620,2,SCI2640,2,SCI2660,2,SCI2520,2,SCI2540,2,SCI2460,2,SCI2440,2,SCI2420,2,SCI2407(men),2,SCI2408(woman),2,Lecture Hallway F2,4,SCI_STAIRS_F2,1
+Lecture Hallway F2,hallway,open,2,SCI2220,2,SCI2230,2,SCI2240,2,SCI2120,2,SCI2130,2,SCI2140,2,SCI2299(men),2,SCI2297(woman),2,Lab Hallway F2,4
+
+# Floor 3 Rooms
+SCI3620,classroom,open,3,Lab Hallway F3,2
+SCI3640,classroom,open,3,Lab Hallway F3,2
+SCI3660,classroom,open,3,Lab Hallway F3,2
+SCI3680,classroom,open,3,Lab Hallway F3,2
+SCI3520,classroom,open,3,Lab Hallway F3,2
+SCI3470,classroom,open,3,Lab Hallway F3,2
+SCI3480,classroom,open,3,Lab Hallway F3,2
+SCI3460,classroom,open,3,Lab Hallway F3,2
+SCI3440,classroom,open,3,Lab Hallway F3,2
+SCI3420,classroom,open,3,Lab Hallway F3,2
+SCI3403,classroom,open,3,Lab Hallway F3,2
+SCI3402,classroom,open,3,Lab Hallway F3,2
+SCI3407(men),washroom,open,3,Lab Hallway F3,2
+SCI3408(woman),washroom,open,3,Lab Hallway F3,2
+SCI3220,classroom,open,3,Lecture Hallway F3,2
+SCI3230,classroom,open,3,Lecture Hallway F3,2
+SCI3240,classroom,open,3,Lecture Hallway F3,2
+SCI3120,classroom,open,3,Lecture Hallway F3,2
+SCI3130,classroom,open,3,Lecture Hallway F3,2
+SCI3140,classroom,open,3,Lecture Hallway F3,2
+SCI3299(men),washroom,open,3,Lecture Hallway F3,2
+SCI3297(woman),washroom,open,3,Lecture Hallway F3,2
+
+# Floor 3 Hallways
+Lab Hallway F3,hallway,open,3,SCI3620,2,SCI3640,2,SCI3660,2,SCI3680,2,SCI3520,2,SCI3470,2,SCI3480,2,SCI3460,2,SCI3440,2,SCI3420,2,SCI3403,2,SCI3402,2,SCI3407(men),2,SCI3408(woman),2,Lecture Hallway F3,4,SCI_STAIRS_F3,1
+Lecture Hallway F3,hallway,open,3,SCI3220,2,SCI3230,2,SCI3240,2,SCI3120,2,SCI3130,2,SCI3140,2,SCI3299(men),2,SCI3297(woman),2,Lab Hallway F3,4
+
+# Floor 4 Rooms
+SCI4620,classroom,open,4,Lab Hallway F4,2
+SCI4640,classroom,open,4,Lab Hallway F4,2
+SCI4660,classroom,open,4,Lab Hallway F4,2
+SCI4680,classroom,open,4,Lab Hallway F4,2
+SCI4520,classroom,open,4,Lab Hallway F4,2
+SCI4540,classroom,open,4,Lab Hallway F4,2
+SCI4470,classroom,open,4,Lab Hallway F4,2
+SCI4480,classroom,open,4,Lab Hallway F4,2
+SCI4460,classroom,open,4,Lab Hallway F4,2
+SCI4440,classroom,open,4,Lab Hallway F4,2
+SCI4420,classroom,open,4,Lab Hallway F4,2
+SCI4410,classroom,open,4,Lab Hallway F4,2
+SCI4406,classroom,open,4,Lab Hallway F4,2
+SCI4403,classroom,open,4,Lab Hallway F4,2
+SCI4404,classroom,open,4,Lab Hallway F4,2
+SCI4407(men),washroom,open,4,Lab Hallway F4,2
+SCI4408(woman),washroom,open,4,Lab Hallway F4,2
+SCI4220,classroom,open,4,Lecture Hallway F4,2
+SCI4240,classroom,open,4,Lecture Hallway F4,2
+SCI4260,classroom,open,4,Lecture Hallway F4,2
+SCI4280,classroom,open,4,Lecture Hallway F4,2
+SCI4160,classroom,open,4,Lecture Hallway F4,2
+SCI4150,classroom,open,4,Lecture Hallway F4,2
+SCI4130,classroom,open,4,Lecture Hallway F4,2
+SCI4120,classroom,open,4,Lecture Hallway F4,2
+SCI4170,classroom,open,4,Lecture Hallway F4,2
+SCI4299(men),washroom,open,4,Lecture Hallway F4,2
+SCI4297(woman),washroom,open,4,Lecture Hallway F4,2
+
+# Floor 4 Hallways
+Lab Hallway F4,hallway,open,4,SCI4620,2,SCI4640,2,SCI4660,2,SCI4680,2,SCI4520,2,SCI4540,2,SCI4470,2,SCI4480,2,SCI4460,2,SCI4440,2,SCI4420,2,SCI4410,2,SCI4406,2,SCI4403,2,SCI4404,2,SCI4407(men),2,SCI4408(woman),2,Lecture Hallway F4,4,SCI_STAIRS_F4,1
+Lecture Hallway F4,hallway,open,4,SCI4220,2,SCI4240,2,SCI4260,2,SCI4280,2,SCI4160,2,SCI4150,2,SCI4130,2,SCI4120,2,SCI4170,2,SCI4299(men),2,SCI4297(woman),2,Lab Hallway F4,4
+
+# SCI Stairs
+SCI_STAIRS_F1,stairs,open,1,Lab Hallway F1,1,SCI_STAIRS_F2,1
+SCI_STAIRS_F2,stairs,open,2,Lab Hallway F2,1,SCI_STAIRS_F1,1,SCI_STAIRS_F3,1
+SCI_STAIRS_F3,stairs,open,3,Lab Hallway F3,1,SCI_STAIRS_F2,1,SCI_STAIRS_F4,1
+SCI_STAIRS_F4,stairs,open,4,Lab Hallway F4,1,SCI_STAIRS_F3,1
+
+# --- BIT BUILDING ---
+# Floor 1 Rooms & Hallway
+BIT1043(men),washroom,open,1,Business Hallway F1,2
+BIT1042(woman),washroom,open,1,Business Hallway F1,2
+Business Hallway F1,hallway,open,1,BIT1043(men),2,BIT1042(woman),2,Hunter's Kitchen,2,BIT_FOUNTAIN,2,BIT_STAIRS_F1,1,BIT_ENTRANCE,2
+
+# Floor 2 Rooms & Hallway
+BIT2080,classroom,open,2,Business Hallway F2,2
+BIT2058,classroom,open,2,Business Hallway F2,2
+BIT2054,classroom,open,2,Business Hallway F2,2
+BIT2050,classroom,open,2,Business Hallway F2,2
+BIT2035,classroom,open,2,Business Hallway F2,2
+BIT2034,classroom,open,2,Business Hallway F2,2
+BIT2037,classroom,open,2,Business Hallway F2,2
+BIT2067,washroom,open,2,Business Hallway F2,2
+BIT2066,washroom,open,2,Business Hallway F2,2
+Business Hallway F2,hallway,open,2,BIT2080,2,BIT2058,2,BIT2054,2,BIT2050,2,BIT2035,2,BIT2034,2,BIT2037,2,BIT2067,2,BIT2066,2,BIT_STAIRS_F2,1
+
+# Floor 3 Rooms & Hallway
+BIT3053,classroom,open,3,Business Hallway F3,2
+BIT3055,classroom,open,3,Business Hallway F3,2
+BIT3070,classroom,open,3,Business Hallway F3,2
+BIT3071,classroom,open,3,Business Hallway F3,2
+BIT3072,classroom,open,3,Business Hallway F3,2
+BIT3075,classroom,open,3,Business Hallway F3,2
+BIT3078,classroom,open,3,Business Hallway F3,2
+BIT3082,classroom,open,3,Business Hallway F3,2
+BIT3085,classroom,open,3,Business Hallway F3,2
+BIT3092,classroom,open,3,Business Hallway F3,2
+BIT3095,classroom,open,3,Business Hallway F3,2
+BIT3098,classroom,open,3,Business Hallway F3,2
+BIT3067,washroom,open,3,Business Hallway F3,2
+BIT3066,washroom,open,3,Business Hallway F3,2
+Business Hallway F3,hallway,open,3,BIT3053,2,BIT3055,2,BIT3070,2,BIT3071,2,BIT3072,2,BIT3075,2,BIT3078,2,BIT3082,2,BIT3085,2,BIT3092,2,BIT3095,2,BIT3098,2,BIT3067,2,BIT3066,2,BIT_STAIRS_F3,1
+
+# Floor 4 Rooms & Hallway
+BIT4043,classroom,open,4,Business Hallway F4,2
+BIT4044,classroom,open,4,Business Hallway F4,2
+BIT4045,classroom,open,4,Business Hallway F4,2
+BIT4047,classroom,open,4,Business Hallway F4,2
+BIT4049,classroom,open,4,Business Hallway F4,2
+BIT4050,classroom,open,4,Business Hallway F4,2
+BIT4070,classroom,open,4,Business Hallway F4,2
+BIT4072,classroom,open,4,Business Hallway F4,2
+BIT4078,classroom,open,4,Business Hallway F4,2
+BIT4082,classroom,open,4,Business Hallway F4,2
+BIT4085,classroom,open,4,Business Hallway F4,2
+BIT4088,classroom,open,4,Business Hallway F4,2
+BIT4092,classroom,open,4,Business Hallway F4,2
+BIT4095,classroom,open,4,Business Hallway F4,2
+BIT4098,classroom,open,4,Business Hallway F4,2
+BIT4067,washroom,open,4,Business Hallway F4,2
+BIT4066,washroom,open,4,Business Hallway F4,2
+Business Hallway F4,hallway,open,4,BIT4043,2,BIT4044,2,BIT4045,2,BIT4047,2,BIT4049,2,BIT4050,2,BIT4070,2,BIT4072,2,BIT4078,2,BIT4082,2,BIT4085,2,BIT4088,2,BIT4092,2,BIT4095,2,BIT4098,2,BIT4067,2,BIT4066,2,BIT_STAIRS_F4,1
+
+# BIT Stairs
+BIT_STAIRS_F1,stairs,open,1,Business Hallway F1,1,BIT_STAIRS_F2,1
+BIT_STAIRS_F2,stairs,open,2,Business Hallway F2,1,BIT_STAIRS_F1,1,BIT_STAIRS_F3,1
+BIT_STAIRS_F3,stairs,open,3,Business Hallway F3,1,BIT_STAIRS_F2,1,BIT_STAIRS_F4,1
+BIT_STAIRS_F4,stairs,open,4,Business Hallway F4,1,BIT_STAIRS_F3,1
+
+# --- SHA BUILDING ---
+# Floor 0 / Basement Rooms & Hallway
+SHA018,classroom,open,0,SHA Hallway F0,2
+SHA038,classroom,open,0,SHA Hallway F0,2
+SHA037,classroom,open,0,SHA Hallway F0,2
+SHA024,classroom,open,0,SHA Hallway F0,2
+SHA Hallway F0,hallway,open,0,SHA018,2,SHA038,2,SHA037,2,SHA024,2,SHA_STAIRS_F0,1
+
+# Floor 1 Rooms & Hallway
+SHA131,classroom,open,1,SHA Hallway F1,2
+SHA133,classroom,open,1,SHA Hallway F1,2
+SHA105(men),washroom,open,1,SHA Hallway F1,2
+SHA106(woman),washroom,open,1,SHA Hallway F1,2
+SHA Hallway F1,hallway,open,1,SHA131,2,SHA133,2,SHA105(men),2,SHA106(woman),2,Tim Hortons,2,SHA_FOUNTAIN,2,SHA_STAIRS_F1,1,SHA_ENTRANCE,2
+
+# Floor 2 Rooms & Hallway
+SHA245,classroom,open,2,SHA Hallway F2,2
+SHA246,classroom,open,2,SHA Hallway F2,2
+SHA247,classroom,open,2,SHA Hallway F2,2
+SHA248,classroom,open,2,SHA Hallway F2,2
+SHA249,classroom,open,2,SHA Hallway F2,2
+SHA205(men),washroom,open,2,SHA Hallway F2,2
+SHA206(woman),washroom,open,2,SHA Hallway F2,2
+SHA Hallway F2,hallway,open,2,SHA245,2,SHA246,2,SHA247,2,SHA248,2,SHA249,2,SHA205(men),2,SHA206(woman),2,SHA_STAIRS_F2,1
+
+# Floor 3 Rooms & Hallway
+SHA344,classroom,open,3,SHA Hallway F3,2
+SHA356,classroom,open,3,SHA Hallway F3,2
+SHA357,classroom,open,3,SHA Hallway F3,2
+SHA358,classroom,open,3,SHA Hallway F3,2
+SHA359,classroom,open,3,SHA Hallway F3,2
+SHA360,classroom,open,3,SHA Hallway F3,2
+SHA361,classroom,open,3,SHA Hallway F3,2
+SHA362,classroom,open,3,SHA Hallway F3,2
+SHA305(men),washroom,open,3,SHA Hallway F3,2
+SHA306(woman),washroom,open,3,SHA Hallway F3,2
+SHA Hallway F3,hallway,open,3,SHA344,2,SHA356,2,SHA357,2,SHA358,2,SHA359,2,SHA360,2,SHA361,2,SHA362,2,SHA305(men),2,SHA306(woman),2,SHA_STAIRS_F3,1
+
+# SHA Stairs
+SHA_STAIRS_F0,stairs,open,0,SHA Hallway F0,1,SHA_STAIRS_F1,1
+SHA_STAIRS_F1,stairs,open,1,SHA Hallway F1,1,SHA_STAIRS_F0,1,SHA_STAIRS_F2,1
+SHA_STAIRS_F2,stairs,open,2,SHA Hallway F2,1,SHA_STAIRS_F1,1,SHA_STAIRS_F3,1
+SHA_STAIRS_F3,stairs,open,3,SHA Hallway F3,1,SHA_STAIRS_F2,1
+
+# --- SIRC BUILDING ---
+# Floor 1 Rooms & Hallway
+SIR1209(men),washroom,open,1,SIRC Hallway F1,2
+SIR1207(women),washroom,open,1,SIRC Hallway F1,2
+SIRC Hallway F1,hallway,open,1,SIR1209(men),2,SIR1207(women),2,SIR_STAIRS_F1,1,SIR_ENTRANCE,2
+
+# Floor 2 Rooms & Hallway
+SIR2010,classroom,open,2,SIRC Hallway F2,2
+SIR2020,classroom,open,2,SIRC Hallway F2,2
+SIR2030,classroom,open,2,SIRC Hallway F2,2
+SIR2060,classroom,open,2,SIRC Hallway F2,2
+SIR2070,classroom,open,2,SIRC Hallway F2,2
+SIR2209(men),washroom,open,2,SIRC Hallway F2,2
+SIR2207(women),washroom,open,2,SIRC Hallway F2,2
+SIRC Hallway F2,hallway,open,2,SIR2010,2,SIR2020,2,SIR2030,2,SIR2060,2,SIR2070,2,SIR2209(men),2,SIR2207(women),2,SIR_STAIRS_F2,1
+
+# Floor 3 Rooms & Hallway
+SIR3110,classroom,open,3,SIRC Hallway F3,2
+SIR3120,classroom,open,3,SIRC Hallway F3,2
+SIR3130,classroom,open,3,SIRC Hallway F3,2
+SIR3150,classroom,open,3,SIRC Hallway F3,2
+SIR3160,classroom,open,3,SIRC Hallway F3,2
+SIR3310,classroom,open,3,SIRC Hallway F3,2
+SIR3340,classroom,open,3,SIRC Hallway F3,2
+SIR3209(men),washroom,open,3,SIRC Hallway F3,2
+SIR3207(women),washroom,open,3,SIRC Hallway F3,2
+SIRC Hallway F3,hallway,open,3,SIR3110,2,SIR3120,2,SIR3130,2,SIR3150,2,SIR3160,2,SIR3310,2,SIR3340,2,SIR3209(men),2,SIR3207(women),2,SIR_STAIRS_F3,1
+
+# Floor 4 Rooms & Hallway
+SIR4110,classroom,open,4,SIRC Hallway F4,2
+SIR4120,classroom,open,4,SIRC Hallway F4,2
+SIR4130,classroom,open,4,SIRC Hallway F4,2
+SIR4140,classroom,open,4,SIRC Hallway F4,2
+SIR4150,classroom,open,4,SIRC Hallway F4,2
+SIR4160,classroom,open,4,SIRC Hallway F4,2
+SIR4173,classroom,open,4,SIRC Hallway F4,2
+SIR4310,classroom,open,4,SIRC Hallway F4,2
+SIR4340,classroom,open,4,SIRC Hallway F4,2
+SIR4360,classroom,open,4,SIRC Hallway F4,2
+SIR4362,classroom,open,4,SIRC Hallway F4,2
+SIR4209(men),washroom,open,4,SIRC Hallway F4,2
+SIR4207(women),washroom,open,4,SIRC Hallway F4,2
+SIRC Hallway F4,hallway,open,4,SIR4110,2,SIR4120,2,SIR4130,2,SIR4140,2,SIR4150,2,SIR4160,2,SIR4173,2,SIR4310,2,SIR4340,2,SIR4360,2,SIR4362,2,SIR4209(men),2,SIR4207(women),2,SIR_STAIRS_F4,1
+
+# SIRC Stairs
+SIR_STAIRS_F1,stairs,open,1,SIRC Hallway F1,1,SIR_STAIRS_F2,1
+SIR_STAIRS_F2,stairs,open,2,SIRC Hallway F2,1,SIR_STAIRS_F1,1,SIR_STAIRS_F3,1
+SIR_STAIRS_F3,stairs,open,3,SIRC Hallway F3,1,SIR_STAIRS_F2,1,SIR_STAIRS_F4,1
+SIR_STAIRS_F4,stairs,open,4,SIRC Hallway F4,1,SIR_STAIRS_F3,1
