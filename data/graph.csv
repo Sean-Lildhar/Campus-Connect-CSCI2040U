@@ -1,13 +1,13 @@
-# --- Polonsky Commons (OUTDOOR HUB) ---
+# Polonsky Commons
 Polonsky_Commons,outdoor,open,1,SCI_ENTRANCE,5,BIT_ENTRANCE,5,SHA_ENTRANCE,5,SIR_ENTRANCE,15
 
-# --- ENTRANCES ---
+# ENTRANCES
 SCI_ENTRANCE,entrance,open,1,Polonsky_Commons,5,Lecture Hallway F1,2,Lab Hallway F1,2
 BIT_ENTRANCE,entrance,open,1,Polonsky_Commons,5,Business Hallway F1,2
 SHA_ENTRANCE,entrance,open,1,Polonsky_Commons,5,SHA Hallway F1,2
 SIR_ENTRANCE,entrance,open,1,Polonsky_Commons,15,SIRC Hallway F1,2
 
-# --- RESTAURANTS & FOUNTAINS ---
+# RESTAURANTS & FOUNTAINS
 Tim Hortons,restaurant,open,1,SHA Hallway F1,2
 Subway,restaurant,open,1,Lecture Hallway F1,2
 Hunter's Kitchen,restaurant,open,1,Business Hallway F1,2
@@ -16,7 +16,7 @@ SCI_FOUNTAIN,water fountain,open,1,Lecture Hallway F1,2
 BIT_FOUNTAIN,water fountain,open,1,Business Hallway F1,2
 SHA_FOUNTAIN,water fountain,open,1,SHA Hallway F1,2
 
-# --- SCI BUILDING ---
+# SCI BUILDING
 # Floor 1 Rooms
 SCI1620,classroom,open,1,Lab Hallway F1,2
 SCI1640,classroom,open,1,Lab Hallway F1,2
@@ -134,7 +134,7 @@ SCI_STAIRS_F2,stairs,open,2,Lab Hallway F2,1,SCI_STAIRS_F1,1,SCI_STAIRS_F3,1
 SCI_STAIRS_F3,stairs,open,3,Lab Hallway F3,1,SCI_STAIRS_F2,1,SCI_STAIRS_F4,1
 SCI_STAIRS_F4,stairs,open,4,Lab Hallway F4,1,SCI_STAIRS_F3,1
 
-# --- BIT BUILDING ---
+# BIT BUILDING
 # Floor 1 Rooms & Hallway
 BIT1043(men),washroom,open,1,Business Hallway F1,2
 BIT1042(woman),washroom,open,1,Business Hallway F1,2
@@ -195,7 +195,7 @@ BIT_STAIRS_F2,stairs,open,2,Business Hallway F2,1,BIT_STAIRS_F1,1,BIT_STAIRS_F3,
 BIT_STAIRS_F3,stairs,open,3,Business Hallway F3,1,BIT_STAIRS_F2,1,BIT_STAIRS_F4,1
 BIT_STAIRS_F4,stairs,open,4,Business Hallway F4,1,BIT_STAIRS_F3,1
 
-# --- SHA BUILDING ---
+# SHA BUILDING
 # Floor 0 / Basement Rooms & Hallway
 SHA018,classroom,open,0,SHA Hallway F0,2
 SHA038,classroom,open,0,SHA Hallway F0,2
@@ -239,7 +239,7 @@ SHA_STAIRS_F1,stairs,open,1,SHA Hallway F1,1,SHA_STAIRS_F0,1,SHA_STAIRS_F2,1
 SHA_STAIRS_F2,stairs,open,2,SHA Hallway F2,1,SHA_STAIRS_F1,1,SHA_STAIRS_F3,1
 SHA_STAIRS_F3,stairs,open,3,SHA Hallway F3,1,SHA_STAIRS_F2,1
 
-# --- SIRC BUILDING ---
+# SIRC BUILDING
 # Floor 1 Rooms & Hallway
 SIR1209(men),washroom,open,1,SIRC Hallway F1,2
 SIR1207(women),washroom,open,1,SIRC Hallway F1,2
