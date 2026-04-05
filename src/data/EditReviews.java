@@ -46,17 +46,26 @@ public class EditReviews {
         return reviews;
     }
 
-    public double getAverageRating(String roomNumber){
+    public double getAverageRating(String roomNumber) {
         List<Integer> ratings = new ArrayList<>();
         int total = 0;
-        double averageRating;
-        for (String[] review : getAllReviews()) {
-            if (review[0].trim().equals(roomNumber)) ratings.add(Integer.parseInt(review[2]));
-        }
-        for(int num : ratings)total+=num;
 
-        averageRating = Double.parseDouble(String.format("%.1f", (double) total / ratings.size()));
-        return averageRating;
+        for (String[] review : getAllReviews()) {
+            if (review[0].trim().equals(roomNumber)) {
+                ratings.add(Integer.parseInt(review[2]));
+            }
+        }
+
+        if (ratings.isEmpty()) {
+            return 0.0;
+        }
+
+        for (int num : ratings) {
+            total += num;
+        }
+
+        double avg = (double) total / ratings.size();
+        return Double.parseDouble(String.format("%.1f", avg));
     }
 
     public String getReviewsByRoom(String roomNumber) {
