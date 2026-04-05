@@ -7,7 +7,7 @@ public class DijkstraNavigationService implements NavigationService {
 
     private final CampusGraph graph;
     public DijkstraNavigationService() {
-        this.graph = new CampusGraph("data/tempgraph.csv");
+        this.graph = new CampusGraph("data/graph.csv");
     }
     public DijkstraNavigationService(String graphPath) {
         this.graph = new CampusGraph(graphPath);

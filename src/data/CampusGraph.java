@@ -153,15 +153,28 @@ public class CampusGraph {
         String prevName = formatName(prev);
         String currName = formatName(curr);
 
-        //Building transition
+        //Building / Outdoor transition
         if (!prev.getBuilding().equals(curr.getBuilding())) {
+            if (curr.getId().equals("Polonsky_Commons")) {
+                if (prev.getId().startsWith("SIR")) {
+                    return "Exit SIRC and cross Conlin Road to the main campus.";
+                } else {
+                    return "Exit the building into Polonsky Commons.";
+                }
+            }
+            else if (prev.getId().equals("Polonsky_Commons")) {
+                if (curr.getId().startsWith("SIR")) {
+                    return "Cross Conlin Road and enter SIRC.";
+                } else {
+                    return "Enter " + currName + " from the Polonsky Commons.";
+                }
+            }
             return "Exit " + prevName + " and head to " + currName;
         }
 
         //Floor transition
         if (prev.getFloor() != curr.getFloor()) {
             String direction = curr.getFloor() > prev.getFloor() ? "up" : "down";
-
             String type = curr.getLocationType().toLowerCase();
 
             if (type.contains("stair")) {
