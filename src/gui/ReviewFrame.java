@@ -53,22 +53,34 @@ public class ReviewFrame extends JFrame{
         this.setVisible(true);
     }
 
-    public void viewLocationReviews(String roomNumber){
-        if(new EditReviews().getReviewsByRoom(roomNumber).isEmpty()){
+    public void viewLocationReviews(String roomNumber) {
+        EditReviews reviewData = new EditReviews();
+        String reviewsText = reviewData.getReviewsByRoom(roomNumber);
+
+        if (reviewsText.isEmpty()) {
             JOptionPane.showMessageDialog(this, "No Reviews", "Reviews", JOptionPane.INFORMATION_MESSAGE);
-        }
-        else {
+        } else {
             this.setTitle("Reviews");
             this.setSize(400, 400);
             this.setLocationRelativeTo(null);
             this.setLayout(new BorderLayout());
 
             JPanel ratingPanel = new JPanel();
-            JLabel reatingsLabel = new JLabel("Averager Rating: " + String.valueOf(new EditReviews().getAverageRating(roomNumber)) + " out of 5 Stars");
-            ratingPanel.add(reatingsLabel);
+
+            double avg = reviewData.getAverageRating(roomNumber);
+            String ratingDisplay;
+
+            if (avg <= 0.0) {
+                ratingDisplay = "No Ratings Yet";
+            } else {
+                ratingDisplay = "Average Rating: " + avg + " out of 5 Stars";
+            }
+
+            JLabel ratingsLabel = new JLabel(ratingDisplay);
+            ratingPanel.add(ratingsLabel);
 
             textAreaLocationReview = new JTextArea();
-            textAreaLocationReview.setText(new EditReviews().getReviewsByRoom(roomNumber));
+            textAreaLocationReview.setText(reviewsText);
             textAreaLocationReview.setEditable(false);
 
             JScrollPane scrollPane = new JScrollPane(textAreaLocationReview);
