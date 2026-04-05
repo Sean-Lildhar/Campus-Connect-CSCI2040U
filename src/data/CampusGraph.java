@@ -8,13 +8,17 @@ import java.util.*;
 public class CampusGraph {
 
     private static final class Edge {
-        final String to;
+        final String neighborId;
         final int weight;
-        Edge(String to, int weight) { this.to = to; this.weight = weight; }
+
+        Edge(String neighborId, int weight) {
+            this.neighborId = neighborId;
+            this.weight = weight;
+        }
     }
 
-    private final Map<String, Waypoint>    nodes   = new HashMap<>();
-    private final Map<String, List<Edge>>  adjList = new HashMap<>();
+    private final Map<String, Waypoint>       nodes   = new HashMap<>();
+    private final Map<String, List<Edge>>     adjList = new HashMap<>();
 
     public CampusGraph(String filePath) {
         load(filePath);
@@ -28,32 +32,39 @@ public class CampusGraph {
             String line;
             while ((line = br.readLine()) != null) {
                 line = line.trim();
-                if (line.isEmpty() || line.startsWith("#")) continue;
+                if (line.isEmpty() || line.startsWith("#")) {
+                    continue;
+                }
 
                 String[] parts = line.split(",");
                 if (parts.length < 4) continue;
 
-                String id       = parts[0].trim();
-                String desc     = parts[1].trim();
-                String building = parts[2].trim();
-                int    floor;
+                // Parse node info: nodeId,description,building,floor
+                String id = parts[0].trim();
+                String locationType = parts[1].trim();
+                String description = "Room " + id;
+                String building = id.substring(0, 3);
+                int floor;
                 try {
                     floor = Integer.parseInt(parts[3].trim());
                 } catch (NumberFormatException e) {
-                    System.err.println("CampusGraph: bad floor value for node " + id);
-                    continue;
+                    floor = 0;
                 }
 
-                nodes.put(id, new Waypoint(id, desc, building, floor));
+                nodes.put(id, new Waypoint(id, description, building, floor, locationType));
 
+                // Parse neighbors: neighbour1,weight1,neighbour2,weight2,...
                 List<Edge> edges = new ArrayList<>();
-                for (int i = 4; i + 1 < parts.length; i += 2) {
-                    String neighbour = parts[i].trim();
-                    try {
-                        int weight = Integer.parseInt(parts[i + 1].trim());
-                        edges.add(new Edge(neighbour, weight));
-                    } catch (NumberFormatException e) {
-                        System.err.println("CampusGraph: bad weight for edge " + id + "->" + neighbour);
+                for (int i = 4; i < parts.length; i += 2) {
+                    if (i + 1 < parts.length) {
+                        String neighborId = parts[i].trim();
+                        int weight;
+                        try {
+                            weight = Integer.parseInt(parts[i + 1].trim());
+                        } catch (NumberFormatException e) {
+                            weight = 1;
+                        }
+                        edges.add(new Edge(neighborId, weight));
                     }
                 }
                 adjList.put(id, edges);
@@ -61,10 +72,6 @@ public class CampusGraph {
         } catch (IOException e) {
             System.err.println("CampusGraph.load error: " + e.getMessage());
         }
-    }
-
-    public boolean containsNode(String id) {
-        return nodes.containsKey(id);
     }
 
     public List<RouteStep> dijkstra(String startId, String endId) {
@@ -92,14 +99,15 @@ public class CampusGraph {
             int currentDist = dist.get(current);
             if (currentDist == Integer.MAX_VALUE) break;
 
-            for (Edge edge : adjList.getOrDefault(current, Collections.emptyList())) {
-                if (!nodes.containsKey(edge.to)) continue;
+            List<Edge> neighbors = adjList.getOrDefault(current, Collections.emptyList());
+            for (Edge edge : neighbors) {
+                if (!nodes.containsKey(edge.neighborId)) continue;
 
                 int candidate = currentDist + edge.weight;
-                if (candidate < dist.getOrDefault(edge.to, Integer.MAX_VALUE)) {
-                    dist.put(edge.to, candidate);
-                    prev.put(edge.to, current);
-                    pq.add(edge.to);
+                if (candidate < dist.getOrDefault(edge.neighborId, Integer.MAX_VALUE)) {
+                    dist.put(edge.neighborId, candidate);
+                    prev.put(edge.neighborId, current);
+                    pq.add(edge.neighborId);
                 }
             }
         }
@@ -108,11 +116,10 @@ public class CampusGraph {
             return Collections.emptyList();
         }
 
-        return buildInstructions(reconstructPath(prev, startId, endId));
+        return buildInstructions(reconstructPath(prev, endId));
     }
 
-    private List<String> reconstructPath(Map<String, String> prev,
-                                          String startId, String endId) {
+    private List<String> reconstructPath(Map<String, String> prev, String endId) {
         LinkedList<String> path = new LinkedList<>();
         for (String at = endId; at != null; at = prev.get(at)) {
             path.addFirst(at);
@@ -126,41 +133,140 @@ public class CampusGraph {
         for (int i = 1; i < path.size(); i++) {
             Waypoint prev = nodes.get(path.get(i - 1));
             Waypoint curr = nodes.get(path.get(i));
-            boolean  isLast = (i == path.size() - 1);
+            boolean isLast = (i == path.size() - 1);
 
-            String instruction;
-
-            if (!prev.getBuilding().equals(curr.getBuilding())) {
-                instruction = "Exit " + friendlyBuilding(prev.getBuilding())
-                        + " and head towards " + curr.getDescription();
-
-            } else if (prev.getFloor() != curr.getFloor()) {
-                String direction = curr.getFloor() > prev.getFloor() ? "up" : "down";
-                instruction = "Take the stairs or elevator " + direction
-                        + " to floor " + curr.getFloor()
-                        + ": " + curr.getDescription();
-
-            } else if (isLast) {
-                instruction = "Arrive at " + curr.getDescription();
-
-            } else {
-                instruction = "Continue along the hallway to " + curr.getDescription();
-            }
-
+            String instruction = generateInstruction(prev, curr, isLast);
             steps.add(new RouteStep(instruction, curr.getId()));
         }
 
         return steps;
     }
 
-    private String friendlyBuilding(String code) {
-        switch (code) {
-            case "SCI":     return "the Science Building";
-            case "BIT":     return "the Business Building";
-            case "SHA":     return "Shawenjigewining Hall";
-            case "SIR":     return "the Software Informatics and Research Centre";
-            case "OUTDOOR": return "the campus path";
-            default:        return code;
+    private String generateInstruction(Waypoint prev, Waypoint curr, boolean isLast) {
+
+        String prevType = prev.getLocationType().toLowerCase();
+        String currType = curr.getLocationType().toLowerCase();
+
+        boolean prevIsHall = prevType.equals("hallway");
+        boolean currIsHall = currType.equals("hallway");
+
+        String prevName = formatName(prev);
+        String currName = formatName(curr);
+
+        //Building / Outdoor transition
+        if (!prev.getBuilding().equals(curr.getBuilding())) {
+            if (curr.getId().equals("Polonsky_Commons")) {
+                if (prev.getId().startsWith("SIR")) {
+                    return "Exit SIRC and cross Conlin Road to the main campus.";
+                } else {
+                    return "Exit the building into Polonsky Commons.";
+                }
+            }
+            else if (prev.getId().equals("Polonsky_Commons")) {
+                if (curr.getId().startsWith("SIR")) {
+                    return "Cross Conlin Road and enter SIRC.";
+                } else {
+                    return "Enter " + currName + " from the Polonsky Commons.";
+                }
+            }
+            return "Exit " + prevName + " and head to " + currName;
         }
+
+        //Floor transition
+        if (prev.getFloor() != curr.getFloor()) {
+            String direction = curr.getFloor() > prev.getFloor() ? "up" : "down";
+            String type = curr.getLocationType().toLowerCase();
+
+            if (type.contains("stair")) {
+                return "Take the stairs " + direction + " to floor " + curr.getFloor();
+            } else if (type.contains("elevator")) {
+                return "Take the elevator " + direction + " to floor " + curr.getFloor();
+            } else {
+                return "Go " + direction + " to floor " + curr.getFloor();
+            }
+        }
+
+        //Final destination
+        if (isLast) {
+            return "Arrive at " + currName;
+        }
+
+        //Room to Hallway
+        if (!prevIsHall && currIsHall) {
+            return "Exit " + prevName + " into the " + currName;
+        }
+
+        //Hallway to Hallway
+        if (prevIsHall && currIsHall) {
+            return "Continue through the " + currName;
+        }
+
+        //Hallway to Room
+        if (prevIsHall) {
+            return "Enter " + currName;
+        }
+
+        //Room to Room
+        return "Proceed to " + currName;
+    }
+
+    private String formatName(Waypoint wp) {
+
+        String type = wp.getLocationType().toLowerCase();
+        String id = wp.getId();
+
+        //Room
+        if (type.equals("classroom")) {
+            return "Room " + id;
+        }
+
+        //Hallway
+        if (type.equals("hallway")) {
+            return cleanName(id);
+        }
+
+        //Entrance / Exit
+        if (type.contains("entrance") || type.contains("exit")) {
+            return cleanName(id);
+        }
+
+        //Stairs
+        if (type.contains("stair")) {
+            return "stairs";
+        }
+
+        //Elevator
+        if (type.contains("elevator")) {
+            return "elevator";
+        }
+
+        //Default
+        return cleanName(id);
+    }
+
+    private String cleanName(String id) {
+
+        //Remove floor suffixes like F1, F2
+        id = id.replaceAll("F\\d+", "");
+
+        //Replace underscores
+        id = id.replace("_", " ");
+
+        //Trim extra spaces
+        id = id.trim();
+
+        //Capitalize words
+        String[] words = id.split(" ");
+        StringBuilder result = new StringBuilder();
+
+        for (String word : words) {
+            if (!word.isEmpty()) {
+                result.append(Character.toUpperCase(word.charAt(0)))
+                        .append(word.substring(1).toLowerCase())
+                        .append(" ");
+            }
+        }
+
+        return result.toString().trim();
     }
 }
