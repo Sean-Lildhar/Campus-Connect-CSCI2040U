@@ -1,8 +1,8 @@
 package data;
 
 import model.RouteStep;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class DijkstraNavigationTest {
 
-    private static final String TEST_DIR  = "test-data";
+    private static final String TEST_DIR = "test-data";
     private static final String TEST_FILE = "test-data/graph.csv";
 
     private DijkstraNavigationService navService;

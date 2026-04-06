@@ -13,11 +13,10 @@ import java.awt.*;
  */
 public class CreateAccountScreen extends JDialog {
 
+    private final EditUser editUser;
     private JTextField usernameField;
     private JPasswordField passwordField;
     private JPasswordField rePasswordField;
-
-    private final EditUser editUser;
 
     public CreateAccountScreen(JFrame parent, EditUser editUser) {
         super(parent, "Create Account", true);

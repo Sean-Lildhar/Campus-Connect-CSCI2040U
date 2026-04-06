@@ -110,12 +110,10 @@ public class SearchScreen extends JDialog {
                         "'" + loc.getRoomNumber() + "' is already in your favourites.",
                         "Favourites", JOptionPane.INFORMATION_MESSAGE);
             }
-        }
-        else if (choice == 3){
+        } else if (choice == 3) {
             this.dispose();
             new ReviewFrame().leaveReviewFrame(loc.getRoomNumber(), currentUser.getUsername());
-        }
-        else if (choice == 4){
+        } else if (choice == 4) {
             this.dispose();
             new ReviewFrame().viewLocationReviews(loc.getRoomNumber());
         }

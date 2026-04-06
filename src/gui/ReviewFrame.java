@@ -4,12 +4,9 @@ import data.EditReviews;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.io.*;
 import java.util.Hashtable;
-import java.util.List;
 
-public class ReviewFrame extends JFrame{
+public class ReviewFrame extends JFrame {
     private JTextArea textAreaReview;
     private JTextArea textAreaLocationReview;
     private JSlider starSlider;
@@ -26,8 +23,8 @@ public class ReviewFrame extends JFrame{
         starSlider.setSnapToTicks(true);
 
         Hashtable<Integer, JLabel> labelTable = new Hashtable<>();
-        labelTable.put(0,  new JLabel("0 Stars"));
-        labelTable.put(5,  new JLabel("5 Stars"));
+        labelTable.put(0, new JLabel("0 Stars"));
+        labelTable.put(5, new JLabel("5 Stars"));
         starSlider.setLabelTable(labelTable);
         starSlider.setPaintLabels(true);
         starSlider.setBorder(BorderFactory.createTitledBorder("Rate Your experience out of 5 stars"));

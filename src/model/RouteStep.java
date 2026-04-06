@@ -9,7 +9,12 @@ public class RouteStep {
         this.waypointId = waypointId;
     }
 
-    public String getInstruction() { return instruction; }
+    public String getInstruction() {
+        return instruction;
+    }
+
     @Override
-    public String toString() { return instruction; }
+    public String toString() {
+        return instruction;
+    }
 }
