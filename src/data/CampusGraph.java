@@ -3,23 +3,16 @@ package data;
 import model.RouteStep;
 import model.Waypoint;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.*;
+
 public class CampusGraph {
 
-    private static final class Edge {
-        final String neighborId;
-        final int weight;
-
-        Edge(String neighborId, int weight) {
-            this.neighborId = neighborId;
-            this.weight = weight;
-        }
-    }
-
-    private final Map<String, Waypoint>       nodes   = new HashMap<>();
-    private final Map<String, List<Edge>>     adjList = new HashMap<>();
-
+    private final Map<String, Waypoint> nodes = new HashMap<>();
+    private final Map<String, List<Edge>> adjList = new HashMap<>();
     public CampusGraph(String filePath) {
         load(filePath);
     }
@@ -83,7 +76,7 @@ public class CampusGraph {
         }
 
         Map<String, Integer> dist = new HashMap<>();
-        Map<String, String>  prev = new HashMap<>();
+        Map<String, String> prev = new HashMap<>();
 
         for (String id : nodes.keySet()) dist.put(id, Integer.MAX_VALUE);
         dist.put(startId, 0);
@@ -136,7 +129,7 @@ public class CampusGraph {
             boolean isLast = (i == path.size() - 1);
 
             String instruction = generateInstruction(prev, curr, isLast);
-            steps.add(new RouteStep(instruction, curr.getId()));
+            steps.add(new RouteStep(instruction, curr.id()));
         }
 
         return steps;
@@ -144,8 +137,8 @@ public class CampusGraph {
 
     private String generateInstruction(Waypoint prev, Waypoint curr, boolean isLast) {
 
-        String prevType = prev.getLocationType().toLowerCase();
-        String currType = curr.getLocationType().toLowerCase();
+        String prevType = prev.locationType().toLowerCase();
+        String currType = curr.locationType().toLowerCase();
 
         boolean prevIsHall = prevType.equals("hallway");
         boolean currIsHall = currType.equals("hallway");
@@ -154,16 +147,15 @@ public class CampusGraph {
         String currName = formatName(curr);
 
         //Building / Outdoor transition
-        if (!prev.getBuilding().equals(curr.getBuilding())) {
-            if (curr.getId().equals("Polonsky_Commons")) {
-                if (prev.getId().startsWith("SIR")) {
+        if (!prev.building().equals(curr.building())) {
+            if (curr.id().equals("Polonsky_Commons")) {
+                if (prev.id().startsWith("SIR")) {
                     return "Exit SIRC and cross Conlin Road to the main campus.";
                 } else {
                     return "Exit the building into Polonsky Commons.";
                 }
-            }
-            else if (prev.getId().equals("Polonsky_Commons")) {
-                if (curr.getId().startsWith("SIR")) {
+            } else if (prev.id().equals("Polonsky_Commons")) {
+                if (curr.id().startsWith("SIR")) {
                     return "Cross Conlin Road and enter SIRC.";
                 } else {
                     return "Enter " + currName + " from the Polonsky Commons.";
@@ -173,16 +165,16 @@ public class CampusGraph {
         }
 
         //Floor transition
-        if (prev.getFloor() != curr.getFloor()) {
-            String direction = curr.getFloor() > prev.getFloor() ? "up" : "down";
-            String type = curr.getLocationType().toLowerCase();
+        if (prev.floor() != curr.floor()) {
+            String direction = curr.floor() > prev.floor() ? "up" : "down";
+            String type = curr.locationType().toLowerCase();
 
             if (type.contains("stair")) {
-                return "Take the stairs " + direction + " to floor " + curr.getFloor();
+                return "Take the stairs " + direction + " to floor " + curr.floor();
             } else if (type.contains("elevator")) {
-                return "Take the elevator " + direction + " to floor " + curr.getFloor();
+                return "Take the elevator " + direction + " to floor " + curr.floor();
             } else {
-                return "Go " + direction + " to floor " + curr.getFloor();
+                return "Go " + direction + " to floor " + curr.floor();
             }
         }
 
@@ -212,8 +204,8 @@ public class CampusGraph {
 
     private String formatName(Waypoint wp) {
 
-        String type = wp.getLocationType().toLowerCase();
-        String id = wp.getId();
+        String type = wp.locationType().toLowerCase();
+        String id = wp.id();
 
         //Room
         if (type.equals("classroom")) {
@@ -268,5 +260,8 @@ public class CampusGraph {
         }
 
         return result.toString().trim();
+    }
+
+    private record Edge(String neighborId, int weight) {
     }
 }

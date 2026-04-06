@@ -156,15 +156,12 @@ SCI1299(men),washroom,open
 SCI1297(woman),washroom,open
 SCI1-MS2(men),washroom,open
 SCI1412(woman),washroom,open
-SCI2299(men),washroom.open
 SCI2297(woman),washroom,open
 SCI2407(men),washroom,open
 SCI2408(woman),washroom,open
-SCI3299(men),washroom.open
 SCI3297(woman),washroom,open
 SCI3407(men),washroom,open
 SCI3408(woman),washroom,open
-SCI4299(men),washroom.open
 SCI4297(woman),washroom,open
 SCI4407(men),washroom,open
 SCI4408(woman),washroom,open

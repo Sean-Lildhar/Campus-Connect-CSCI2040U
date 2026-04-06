@@ -13,13 +13,12 @@ import java.awt.*;
  */
 public class LoginFrame extends JFrame {
 
+    private final EditUser editUser;
     private JTextField usernameField;
     private JPasswordField passwordField;
     private JButton toggleVisibilityButton;
     private JButton loginButton;
     private JButton createAccountButton;
-
-    private final EditUser editUser;
 
     public LoginFrame() {
         this.editUser = new EditUser();
