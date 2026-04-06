@@ -119,7 +119,7 @@ public class NavigationTest {
                 .anyMatch(step -> step.getInstruction().contains("Exit the building into Polonsky Commons"));
 
         boolean enteredFromQuad = path.stream()
-                .anyMatch(step -> step.getInstruction().contains("Enter Sha Entrance from the Polonsky Commons"));
+                .anyMatch(step -> step.getInstruction().contains("Enter SHA Entrance from the Polonsky Commons"));
 
         boolean wentDown = path.stream()
                 .anyMatch(step -> step.getInstruction().toLowerCase().contains("down to floor"));
