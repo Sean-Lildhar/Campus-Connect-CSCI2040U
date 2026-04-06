@@ -20,9 +20,7 @@ public class ReviewFrame extends JFrame{
         this.setSize(400, 400);
         this.setLocationRelativeTo(null);
 
-        // Create slider (min=0, max=10, initial=7 to represent "Normal" area)
         starSlider = new JSlider(JSlider.HORIZONTAL, 0, 5, 0);
-
         starSlider.setMajorTickSpacing(1);
         starSlider.setPaintTicks(true);
         starSlider.setSnapToTicks(true);
@@ -41,11 +39,22 @@ public class ReviewFrame extends JFrame{
         JPanel submitPanel = new JPanel();
         JButton submitButton = new JButton("Submit Review");
         EditReviews userReview = new EditReviews();
-        submitButton.addActionListener(
-                e -> {
-                    userReview.addReview(roomNumber,user,starSlider.getValue(),textAreaReview.getText());
-                    ReviewFrame.this.dispose();
-                });
+
+        submitButton.addActionListener(e -> {
+            String reviewText = textAreaReview.getText().trim();
+
+            if (reviewText.isEmpty()) {
+                JOptionPane.showMessageDialog(this,
+                        "Please enter some text for your review before submitting.",
+                        "Review Text Required",
+                        JOptionPane.WARNING_MESSAGE);
+                return; // Exit the listener so the review is NOT saved
+            }
+
+            userReview.addReview(roomNumber, user, starSlider.getValue(), reviewText);
+            ReviewFrame.this.dispose();
+        });
+
         submitPanel.add(submitButton);
         this.add(starSlider, BorderLayout.NORTH);
         this.add(scrollPane, BorderLayout.CENTER);
@@ -79,11 +88,11 @@ public class ReviewFrame extends JFrame{
             JLabel ratingsLabel = new JLabel(ratingDisplay);
             ratingPanel.add(ratingsLabel);
 
-            textAreaLocationReview = new JTextArea();
-            textAreaLocationReview.setText(reviewsText);
-            textAreaLocationReview.setEditable(false);
+            JTextArea textAreaReviews = new JTextArea();
+            textAreaReviews.setText(reviewsText);
+            textAreaReviews.setEditable(false);
 
-            JScrollPane scrollPane = new JScrollPane(textAreaLocationReview);
+            JScrollPane scrollPane = new JScrollPane(textAreaReviews);
 
             this.add(ratingPanel, BorderLayout.NORTH);
             this.add(scrollPane, BorderLayout.CENTER);

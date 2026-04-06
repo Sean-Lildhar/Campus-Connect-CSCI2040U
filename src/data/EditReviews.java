@@ -17,11 +17,17 @@ public class EditReviews {
         this.FILE_PATH = filePath;
     }
 
-    public void addReview(String roomNumber, String user, int rating, String reviewText) {
-        try (PrintWriter pw = new PrintWriter(new FileWriter(FILE_PATH, true))) {
-            pw.println(roomNumber + "," + user + "," + rating + "," + reviewText);
+    public void addReview(String roomNumber, String username, int rating, String reviewText) {
+
+        String cleanText = reviewText.replace("\n", " ")
+                .replace("\r", " ")
+                .replace(",", ";");
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(FILE_PATH, true))) {
+            bw.write(roomNumber + "," + username + "," + rating + "," + cleanText);
+            bw.newLine();
         } catch (IOException e) {
-            System.err.println("EditReviews.addReview error: " + e.getMessage());
+            System.err.println("Error saving review: " + e.getMessage());
         }
     }
 
@@ -55,15 +61,12 @@ public class EditReviews {
                 ratings.add(Integer.parseInt(review[2]));
             }
         }
-
         if (ratings.isEmpty()) {
             return 0.0;
         }
-
         for (int num : ratings) {
             total += num;
         }
-
         double avg = (double) total / ratings.size();
         return Double.parseDouble(String.format("%.1f", avg));
     }
