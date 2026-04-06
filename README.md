@@ -33,21 +33,21 @@ Campus Connect/
     data/
         users.csv                           <- username,password,role
         locations.csv                       <- roomNumber,locationType,status
-        favourites.csv                      <- username,roomNumber,...
-    maps/                                   <- contains imaages used to show campus maps
-    META_INF/
-        MANIFEST.MF                         <- used in creation of JAR file
-    out/
-        production/
-        Campus-Connect-CSCI2040U/
-            META_INF/
-                MANIFEST.MF                 
+        favourites.csv                      <- username,roomNumber,roomNumber
+        graph.csv                           <- holds navigation logic
+        reviews.csv                         <- holds review information
+    maps/                                   <- contains images used to show campus maps
     src/
         data/
             EditUser.java                   <- read/write users.csv
             EditLocation.java               <- read/write locations.csv
             EditFavourites.java             <- read/write favourites.csv
             NavigationService.java          <- mock service for test cases
+            CampusGraph.java                <- loads data from graph.csv and shows directions
+            DijkstraNavigationService.java  <- responsible for pathfinding
+            EditReviews.java                <- adds and reads from reviews.csv
+            NavigationService.java          <- definees the navigation service
+            
         gui/
             AdminScreen.java                <- admin room-status editor popup
             CreateAccountScreen.java        <- new-account popup
@@ -57,8 +57,8 @@ Campus Connect/
             MapPanel.java                   <- map panel                    
             SearchScreen.java               <- location search results popup
             UserPerms.java                  <- allows admin to change user perms
-        META-INF/
-            MANIFEST.MF
+            ReviewFrame.java                <- adding and reading review popup
+            
         model/
             User.java                       <- standard user (username, password, favourites)
             Admin.java                      <- admin extends User
@@ -69,17 +69,19 @@ Campus Connect/
     test-data                               <- temporary directory made during testing
     tests
         data
-            EditFavouritesTest              <- test the EditFavourites class
-            EditLocationTest                <- test the EditLocation class
-            EditUserTest                    <- test the EditUser class
-            NavigationTest                  <- test the Navigation
-            TestNavService                  <- mock mapping for testing
+            EditFavouritesTest.java         <- test the EditFavourites class
+            EditLocationTest.java           <- test the EditLocation class
+            EditUserTest.java               <- test the EditUser class
+            NavigationTest.java             <- test the Navigation
+            TestNavService.java             <- mock mapping for testing
+            DijkstraNavigationTest.java     <- test the pathfinding algorithm  
+            EditReviewsTest.java            <- test the review feature
+            
         model
             AdminTest                       <- test the Admin class
             LocationTest                    <- test the Location class
             UserTest                        <- test the User class
     .gitignore
-    Campus-Connect-CSCI2040U.iml
     Campus-Connect.jar                      <- easily executable JAR file
     pom.xml
     README.md
