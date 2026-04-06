@@ -99,7 +99,7 @@ We will be following the standard IntelliJ IDEA code format
 1. Ensure that JDK21 or later is installed on your machine check by running `java -version` in your terminal 
 2. Type `git clone https://github.com/Sean-Lildhar/Campus-Connect-CSCI2040U.git` into the terminal - Clones the Repo
 3. Type `cd Campus-Connect-CSCI2040U` into terminal - Changes Directory into the repo
-4. Type `java -jar Campus-Connect.jar` into terminal
+4. Type `java -jar campus-connect.jar` into terminal
 5. Use either the provided Sample Credentials or create your own
 
 #### IntelliJ IDEA:

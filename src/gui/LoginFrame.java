@@ -23,7 +23,7 @@ public class LoginFrame extends JFrame {
 
     public LoginFrame() {
         this.editUser = new EditUser();
-        setTitle("Campus Navigator  —  Login");
+        setTitle("Campus Connect Login");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(380, 260);
         setLocationRelativeTo(null);
@@ -40,7 +40,7 @@ public class LoginFrame extends JFrame {
         g.insets = new Insets(5, 5, 5, 5);
 
         //Title
-        JLabel title = new JLabel("Campus Navigator", SwingConstants.CENTER);
+        JLabel title = new JLabel("Campus Connect", SwingConstants.CENTER);
         title.setFont(new Font("Arial", Font.BOLD, 20));
         g.gridx = 0;
         g.gridy = 0;
