@@ -3,29 +3,38 @@
 A Java Swing desktop application providing a Google Maps-style campus navigation with a focus
 on providing indoor directions.
 
-This iteration focuses on Account Creation (CreateAccountScreen),
-Login Functionality (LoginFrame), the Main Application Screens (MainFrame),
-Admin Functionality (AdminScreen), User Permissions Management (UserPerms) and
-Favourites System (FavouritesScreen). Navigation is not yet implemented.
-
 The GitHub Project Board can be found here:
 https://github.com/users/Sean-Lildhar/projects/3/views/1
 ---
-
 ## CSV Formats
 
 users.csv : username,password,role(admin/user) <br>
 locations.csv : roomNumber,locationType,status <br>
 favourites.csv : username,roomNumber,roomNumber,... <br>
-
-### Sample credentials
+graph.csv : roomNumber,locationType,status,weight,linkedFlag,weight <br>
+review.csv : roomNumber, username, Rating, ReviewText <br>
+---
+## Sample Credentials
 
 Username Password Role <br>
 admin admin admin <br>
 user user user <br>
+---
+## Application Setup
+#### Terminal:
+1. Ensure that JDK21 or later is installed on your machine check by running `java -version` in your terminal
+2. Type `git clone https://github.com/Sean-Lildhar/Campus-Connect-CSCI2040U.git` into the terminal - Clones the Repo
+3. Type `cd Campus-Connect-CSCI2040U` into terminal - Changes Directory into the repo
+4. Type `java -jar campus-connect.jar` into terminal
+5. Use either the provided Sample Credentials or create your own
+
+#### IntelliJ IDEA:
+1. Clone the repository from the main menu `https://github.com/Sean-Lildhar/Campus-Connect-CSCI2040U.git`
+2. Navigate to src -> Main
+3. Open the Main file and click the Green play button that appears at the top of the screen
+4. Use either the provided Sample Credentials or create your own
 
 ---
-
 ## Project Structure
 
 ```
@@ -92,21 +101,7 @@ Campus Connect/
 
 ### Style Guide
 
-We will be following the standard IntelliJ IDEA code format
-
-### Application Setup
-#### Terminal:
-1. Ensure that JDK21 or later is installed on your machine check by running `java -version` in your terminal 
-2. Type `git clone https://github.com/Sean-Lildhar/Campus-Connect-CSCI2040U.git` into the terminal - Clones the Repo
-3. Type `cd Campus-Connect-CSCI2040U` into terminal - Changes Directory into the repo
-4. Type `java -jar campus-connect.jar` into terminal
-5. Use either the provided Sample Credentials or create your own
-
-#### IntelliJ IDEA:
-1. Clone the repository from the main menu `https://github.com/Sean-Lildhar/Campus-Connect-CSCI2040U.git`
-2. Navigate to src -> Main
-3. Open the Main file and click the Green play button that appears at the top of the screen 
-4. Use either the provided Sample Credentials or create your own
+This program follows the standard IntelliJ IDEA code format
 
 
 
