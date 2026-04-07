@@ -13,6 +13,7 @@ public class CampusGraph {
 
     private final Map<String, Waypoint> nodes = new HashMap<>();
     private final Map<String, List<Edge>> adjList = new HashMap<>();
+
     public CampusGraph(String filePath) {
         load(filePath);
     }
