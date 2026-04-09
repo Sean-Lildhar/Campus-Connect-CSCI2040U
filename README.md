@@ -5,6 +5,9 @@ on providing indoor directions.
 
 The GitHub Project Board can be found here:
 https://github.com/users/Sean-Lildhar/projects/3/views/1
+
+The following is short video demonstrating how to set up and use the program:
+https://drive.google.com/file/d/1vTki3hWLvy1NXp3h8S9N1GQ2lkOC6Clh/view?usp=sharing
 ---
 ## CSV Formats
 
