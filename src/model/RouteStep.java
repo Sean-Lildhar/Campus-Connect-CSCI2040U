@@ -12,6 +12,9 @@ public class RouteStep {
     public String getInstruction() {
         return instruction;
     }
+    public String getWaypointId() {
+        return waypointId;
+    }
 
     @Override
     public String toString() {
