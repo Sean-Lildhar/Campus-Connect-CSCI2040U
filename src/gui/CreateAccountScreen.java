@@ -89,15 +89,15 @@ public class CreateAccountScreen extends JDialog {
             return;
         }
 
-        if (!password.equals(rePassword)) {
-            JOptionPane.showMessageDialog(this, "Passwords do not match",
-                    "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
         if (password.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Password cannot be empty.",
                     "Validation Error", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        if (!password.equals(rePassword)) {
+            JOptionPane.showMessageDialog(this, "Passwords do not match",
+                    "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
