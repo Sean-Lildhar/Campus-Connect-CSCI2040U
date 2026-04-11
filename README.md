@@ -43,23 +43,21 @@ user user user <br>
 ```
 Campus Connect/
     data/
-        users.csv                           <- username,password,role
-        locations.csv                       <- roomNumber,locationType,status
         favourites.csv                      <- username,roomNumber,roomNumber
         graph.csv                           <- holds navigation logic
+        locations.csv                       <- roomNumber,locationType,status
         reviews.csv                         <- holds review information
+        users.csv                           <- username,password,role
     maps/                                   <- contains images used to show campus maps
     src/
         data/
-            EditUser.java                   <- read/write users.csv
-            EditLocation.java               <- read/write locations.csv
-            EditFavourites.java             <- read/write favourites.csv
-            NavigationService.java          <- mock service for test cases
             CampusGraph.java                <- loads data from graph.csv and shows directions
             DijkstraNavigationService.java  <- responsible for pathfinding
+            EditFavourites.java             <- read/write favourites.csv
+            EditLocation.java               <- read/write locations.csv
             EditReviews.java                <- adds and reads from reviews.csv
-            NavigationService.java          <- definees the navigation service
-            
+            EditUser.java                   <- read/write users.csv
+            NavigationService.java          <- defines the navigation service
         gui/
             AdminScreen.java                <- admin room-status editor popup
             CreateAccountScreen.java        <- new-account popup
@@ -67,36 +65,33 @@ Campus Connect/
             LoginFrame.java                 <- login screen
             MainFrame.java                  <- main window (JSplitPane)
             MapPanel.java                   <- map panel                    
-            SearchScreen.java               <- location search results popup
-            UserPerms.java                  <- allows admin to change user perms
             ReviewFrame.java                <- adding and reading review popup
-            
+            SearchScreen.java               <- location search results popup
+            UserPerms.java                  <- allows admin to change user perms         
         model/
-            User.java                       <- standard user (username, password, favourites)
             Admin.java                      <- admin extends User
-            Location.java                   <- campus location (room number, type, status)
-            RouteStep.java                  <- mock class for test cases
-            Waypoint.java                   <- mock class for test cases 
+            Location.java                   <- campus location (room number, type, status) 
+            RouteStep.java                  <- holds a signle navigation instruction
+            User.java                       <- standard user (username, password, favourites)
+            Waypoint.java                   <- indivudal node in the navigation graph
         Main.java
     test-data                               <- temporary directory made during testing
-    tests
-        data
+    tests/
+        data/
+            DijkstraNavigationTest.java     <- test the pathfinding algorithm  
             EditFavouritesTest.java         <- test the EditFavourites class
             EditLocationTest.java           <- test the EditLocation class
-            EditUserTest.java               <- test the EditUser class
-            NavigationTest.java             <- test the Navigation
-            TestNavService.java             <- mock mapping for testing
-            DijkstraNavigationTest.java     <- test the pathfinding algorithm  
             EditReviewsTest.java            <- test the review feature
-            
-        model
+            EditUserTest.java               <- test the EditUser class
+            NavigationTest.java             <- test the Navigation                
+        model/
             AdminTest                       <- test the Admin class
             LocationTest                    <- test the Location class
             UserTest                        <- test the User class
-    .gitignore
+    .gitignore                              <- files for git to ignore
     Campus-Connect.jar                      <- easily executable JAR file
-    pom.xml
-    README.md
+    pom.xml                                 <- maven prokect configuration
+    README.md                               <- project documentation
 /                                
 ```
 
