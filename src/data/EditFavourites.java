@@ -52,10 +52,7 @@ public class EditFavourites {
             }
         }
         if (!found) {
-            String[] newRow = new String[1 + favourites.size()];
-            newRow[0] = username;
-            for (int i = 0; i < favourites.size(); i++) newRow[i + 1] = favourites.get(i);
-            allRows.add(newRow);
+            allRows.add(new String[]{username});
         }
 
         try (PrintWriter pw = new PrintWriter(new FileWriter(FILE_PATH, false))) {
