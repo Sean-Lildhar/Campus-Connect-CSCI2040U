@@ -37,10 +37,12 @@ SCI1140,classroom,open,1,Lecture Hallway F1,2
 SCI1299(men),washroom,open,1,Lecture Hallway F1,2
 SCI1297(woman),washroom,open,1,Lecture Hallway F1,2
 SCI1-MS2(men),washroom,open,1,Lecture Hallway F1,2
+SCI101,wf,open,1,Lab Hallway F1,2
+SCI102,wf,open,1,Lecture Hallway F1,2
 
 # Floor 1 Hallways
-Lab Hallway F1,hallway,open,1,SCI1620,2,SCI1640,2,SCI1660,2,SCI1004,2,SCI1520,2,SCI1540,2,SCI1460,2,SCI1440,2,SCI1420,2,SCI1407,2,SCI1412(woman),2,Cha & Co. Boba Bar,2,Lecture Hallway F1,4,SCI_STAIRS_F1,1,SCI_ENTRANCE,2
-Lecture Hallway F1,hallway,open,1,SCI1350,2,SCI1220,2,SCI1240,2,SCI1120,2,SCI1140,2,SCI1299(men),2,SCI1297(woman),2,SCI1-MS2(men),2,Subway,2,SCI_FOUNTAIN,2,Lab Hallway F1,4,SCI_ENTRANCE,2
+Lab Hallway F1,hallway,open,1,SCI1620,2,SCI1640,2,SCI1660,2,SCI1004,2,SCI1520,2,SCI1540,2,SCI1460,2,SCI1440,2,SCI1420,2,SCI1407,2,SCI1412(woman),2,SCI101,2,Cha & Co. Boba Bar,2,Lecture Hallway F1,4,SCI_STAIRS_F1,1,SCI_ENTRANCE,2
+Lecture Hallway F1,hallway,open,1,SCI1350,2,SCI1220,2,SCI1240,2,SCI1120,2,SCI1140,2,SCI1299(men),2,SCI1297(woman),2,SCI1-MS2(men),2,SCI102,2,Subway,2,SCI_FOUNTAIN,2,Lab Hallway F1,4,SCI_ENTRANCE,2
 
 # Floor 2 Rooms
 SCI2620,classroom,open,2,Lab Hallway F2,2
@@ -138,7 +140,8 @@ SCI_STAIRS_F4,stairs,open,4,Lab Hallway F4,1,SCI_STAIRS_F3,1
 # Floor 1 Rooms & Hallway
 BIT1043(men),washroom,open,1,Business Hallway F1,2
 BIT1042(woman),washroom,open,1,Business Hallway F1,2
-Business Hallway F1,hallway,open,1,BIT1043(men),2,BIT1042(woman),2,Hunter's Kitchen,2,BIT_FOUNTAIN,2,BIT_STAIRS_F1,1,BIT_ENTRANCE,2
+BIT103,wf,open,1,Business Hallway F1,2
+Business Hallway F1,hallway,open,1,BIT1043(men),2,BIT1042(woman),2,BIT103,2,Hunter's Kitchen,2,BIT_FOUNTAIN,2,BIT_STAIRS_F1,1,BIT_ENTRANCE,2
 
 # Floor 2 Rooms & Hallway
 BIT2080,classroom,open,2,Business Hallway F2,2
@@ -208,7 +211,8 @@ SHA131,classroom,open,1,SHA Hallway F1,2
 SHA133,classroom,open,1,SHA Hallway F1,2
 SHA105(men),washroom,open,1,SHA Hallway F1,2
 SHA106(woman),washroom,open,1,SHA Hallway F1,2
-SHA Hallway F1,hallway,open,1,SHA131,2,SHA133,2,SHA105(men),2,SHA106(woman),2,Tim Hortons,2,SHA_FOUNTAIN,2,SHA_STAIRS_F1,1,SHA_ENTRANCE,2
+SHA104,wf,open,1,SHA Hallway F1,2
+SHA Hallway F1,hallway,open,1,SHA131,2,SHA133,2,SHA105(men),2,SHA106(woman),2,SHA104,2,Tim Hortons,2,SHA_FOUNTAIN,2,SHA_STAIRS_F1,1,SHA_ENTRANCE,2
 
 # Floor 2 Rooms & Hallway
 SHA245,classroom,open,2,SHA Hallway F2,2
@@ -243,7 +247,8 @@ SHA_STAIRS_F3,stairs,open,3,SHA Hallway F3,1,SHA_STAIRS_F2,1
 # Floor 1 Rooms & Hallway
 SIR1209(men),washroom,open,1,SIRC Hallway F1,2
 SIR1207(women),washroom,open,1,SIRC Hallway F1,2
-SIRC Hallway F1,hallway,open,1,SIR1209(men),2,SIR1207(women),2,SIR_STAIRS_F1,1,SIRC_ENTRANCE,2
+SIR105,wf,open,1,SIRC Hallway F1,2
+SIRC Hallway F1,hallway,open,1,SIR1209(men),2,SIR1207(women),2,SIR105,2,SIR_STAIRS_F1,1,SIRC_ENTRANCE,2
 
 # Floor 2 Rooms & Hallway
 SIR2010,classroom,open,2,SIRC Hallway F2,2

@@ -238,28 +238,24 @@ public class CampusGraph {
     }
 
     private String cleanName(String id) {
-        // Remove floor suffixes like F1, F2, F0
+        //Remove floor suffixes like F1, F2, F0
         id = id.replaceAll("F\\d+", "");
 
-        // Replace underscores
+        //Replace underscores
         id = id.replace("_", " ");
 
-        // Trim extra spaces
+        //Trim extra spaces
         id = id.trim();
 
-        // Capitalize words
+        //Capitalize words
         String[] words = id.split(" ");
         StringBuilder result = new StringBuilder();
 
         for (String word : words) {
             if (!word.isEmpty()) {
-                // Treat short uppercase words (≤4 chars) as building codes/acronyms
-                // This preserves: SCI, BIT, SHA, SIR, SIRC
-                if (word.equals(word.toUpperCase()) && word.length() <= 4) {
+                if (word.equals(word.toUpperCase()) && word.matches("[A-Z0-9()]+")) {
                     result.append(word).append(" ");
                 } else {
-                    // Apply title case to longer words
-                    // This converts: ENTRANCE→Entrance, STAIRS→Stairs, FOUNTAIN→Fountain
                     result.append(Character.toUpperCase(word.charAt(0)))
                             .append(word.substring(1).toLowerCase())
                             .append(" ");

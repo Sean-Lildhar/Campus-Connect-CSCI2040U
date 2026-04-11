@@ -187,6 +187,8 @@ SIR3209(men),washroom,open
 SIR3207(women),washroom,open
 SIR4209(men),washroom,open
 SIR4207(women),washroom,open
-SCI,water fountain,open
-BIT,water fountain,open
-SHA,water fountain,open
+SCI101,water fountain,open
+SCI102,water fountain,open
+BIT103,water fountain,open
+SHA104,water fountain,open
+SIR105,water fountain,open
