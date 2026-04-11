@@ -169,7 +169,7 @@ public class MainFrame extends JFrame {
     //Right Panel
     private JPanel buildRightPanel() {
         JPanel panel = new JPanel(new GridBagLayout());
-        panel.setBorder(BorderFactory.createTitledBorder("NavigationService"));
+        panel.setBorder(BorderFactory.createTitledBorder("Navigation Service"));
 
         GridBagConstraints g = new GridBagConstraints();
         g.fill = GridBagConstraints.HORIZONTAL;
@@ -341,6 +341,12 @@ public class MainFrame extends JFrame {
 
     private void handleSearch() {
         String type = (String) locationTypeDropdown.getSelectedItem();
+        if (type == null || "Select a Category to Search".equals(type)) {
+            JOptionPane.showMessageDialog(this,
+                    "Select a category from the 'Location Type' Dropdown menu",
+                    "No Selection", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         List<Location> results = editLocation.getLocationsByType(type);
         SearchScreen dlg = new SearchScreen(
                 this, results, destinationField, currentUser, editFavourites);
