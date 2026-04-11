@@ -53,21 +53,27 @@ public class EditReviews {
     }
 
     public double getAverageRating(String roomNumber) {
-        List<Integer> ratings = new ArrayList<>();
         int total = 0;
+        int count = 0;
 
         for (String[] review : getAllReviews()) {
             if (review[0].trim().equals(roomNumber)) {
-                ratings.add(Integer.parseInt(review[2]));
+                try {
+                    int rating = Integer.parseInt(review[2].trim());
+                    total += rating;
+                    count++;
+                } catch (NumberFormatException e) {
+                    System.err.println("EditReviews.getAverageRating: Skipping malformed rating for room "
+                            + roomNumber + ": " + review[2]);
+                }
             }
         }
-        if (ratings.isEmpty()) {
+
+        if (count == 0) {
             return 0.0;
         }
-        for (int num : ratings) {
-            total += num;
-        }
-        double avg = (double) total / ratings.size();
+
+        double avg = (double) total / count;
         return Double.parseDouble(String.format("%.1f", avg));
     }
 
