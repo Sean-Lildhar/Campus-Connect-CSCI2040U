@@ -14,7 +14,7 @@ https://drive.google.com/file/d/1vTki3hWLvy1NXp3h8S9N1GQ2lkOC6Clh/view?usp=shari
 users.csv : username,password,role(admin/user) <br>
 locations.csv : roomNumber,locationType,status <br>
 favourites.csv : username,roomNumber,roomNumber,... <br>
-graph.csv : roomNumber,locationType,status,weight,linkedFlag,weight <br>
+graph.csv : id,locationType,status,floor,neighbour,weight,neighbour,weight,... <br>
 review.csv : roomNumber, username, Rating, ReviewText <br>
 ---
 ## Sample Credentials
