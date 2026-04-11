@@ -26,7 +26,8 @@ public class MainFrame extends JFrame {
     private final User currentUser;
     private final EditUser editUser;
     private final EditLocation editLocation;
-    private final EditFavourites EditFavourites;
+    private final EditFavourites editFavourites;
+    private final NavigationService navService;
 
     private JTextField startingLocationField;
     private JTextField destinationField;
@@ -40,7 +41,8 @@ public class MainFrame extends JFrame {
         this.currentUser = user;
         this.editUser = editUser;
         this.editLocation = new EditLocation();
-        this.EditFavourites = new EditFavourites();
+        this.editFavourites = new EditFavourites();
+        this.navService = new DijkstraNavigationService();
 
         setTitle("Campus Connect  - "
                 + user.getUsername()
@@ -317,7 +319,6 @@ public class MainFrame extends JFrame {
             return;
         }
 
-        NavigationService navService = new DijkstraNavigationService();
         List<RouteStep> steps = navService.getDirections(start, dest);
 
         if (steps.isEmpty()) {
@@ -342,12 +343,12 @@ public class MainFrame extends JFrame {
         String type = (String) locationTypeDropdown.getSelectedItem();
         List<Location> results = editLocation.getLocationsByType(type);
         SearchScreen dlg = new SearchScreen(
-                this, results, destinationField, currentUser, EditFavourites);
+                this, results, destinationField, currentUser, editFavourites);
         dlg.setVisible(true);
     }
 
     private void handleFavourites() {
-        List<String> favs = EditFavourites.getFavourites(currentUser.getUsername());
+        List<String> favs = editFavourites.getFavourites(currentUser.getUsername());
         FavouritesScreen dlg = new FavouritesScreen(this, favs, destinationField);
         dlg.setVisible(true);
     }
