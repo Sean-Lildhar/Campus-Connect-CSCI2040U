@@ -167,7 +167,12 @@ public class CampusGraph {
 
         //Floor transition
         if (prev.floor() != curr.floor()) {
-            String direction = curr.floor() > prev.floor() ? "up" : "down";
+            String direction;
+            if (curr.floor() > prev.floor()) {
+                direction = "up";
+            } else {
+                direction = "down";
+            }
             String type = curr.locationType().toLowerCase();
 
             if (type.contains("stair")) {

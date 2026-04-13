@@ -82,7 +82,7 @@ public class DijkstraNavigationTest {
         List<RouteStep> steps = navService.getDirections("SCI1620", "SCI1640");
 
         boolean mentionsStairs = steps.stream()
-                .anyMatch(s -> s.getInstruction().toLowerCase().contains("stair"));
+                .anyMatch(s -> s.instruction().toLowerCase().contains("stair"));
 
         assertFalse(mentionsStairs);
     }
@@ -104,8 +104,8 @@ public class DijkstraNavigationTest {
         List<RouteStep> steps = navService.getDirections("SCI1620", "SCI2620");
 
         boolean usesStairs = steps.stream()
-                .anyMatch(s -> s.getInstruction().toLowerCase().contains("stair")
-                        || s.getInstruction().toLowerCase().contains("elevator"));
+                .anyMatch(s -> s.instruction().toLowerCase().contains("stair")
+                        || s.instruction().toLowerCase().contains("elevator"));
 
         assertTrue(usesStairs, "Cross-floor route must mention stairs or elevator");
     }
@@ -115,8 +115,8 @@ public class DijkstraNavigationTest {
         List<RouteStep> steps = navService.getDirections("SCI1620", "SCI2620");
 
         for (RouteStep step : steps) {
-            assertNotNull(step.getInstruction());
-            assertFalse(step.getInstruction().isBlank());
+            assertNotNull(step.instruction());
+            assertFalse(step.instruction().isBlank());
         }
     }
 

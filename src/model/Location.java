@@ -33,6 +33,6 @@ public class Location {
 
     @Override
     public String toString() {
-        return roomNumber + " (" + locationType + ")  —  " + status;
+        return roomNumber + " (" + locationType + ")  -  " + status;
     }
 }
