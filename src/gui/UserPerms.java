@@ -44,14 +44,22 @@ public class UserPerms extends JDialog {
         g.gridy = 1;
         panel.add(new JLabel("Current Role:"), g);
         g.gridx = 1;
-        panel.add(new JLabel(user.isAdmin() ? "Admin" : "User"), g);
+        if (user.isAdmin()) {
+            panel.add(new JLabel("Admin"), g);
+        } else {
+            panel.add(new JLabel("User"), g);
+        }
 
         //Role dropdown
         g.gridx = 0;
         g.gridy = 2;
         panel.add(new JLabel("New Role:"), g);
         roleDropdown = new JComboBox<>(new String[]{"user", "admin"});
-        roleDropdown.setSelectedItem(user.isAdmin() ? "admin" : "user");
+        if (user.isAdmin()) {
+            roleDropdown.setSelectedItem("admin");
+        } else {
+            roleDropdown.setSelectedItem("user");
+        }
         g.gridx = 1;
         panel.add(roleDropdown, g);
 

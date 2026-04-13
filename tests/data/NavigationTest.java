@@ -32,7 +32,7 @@ public class NavigationTest {
         assertFalse(path.isEmpty(), "Path should not be empty");
 
         boolean hasHallway = path.stream()
-                .anyMatch(step -> step.getInstruction().toLowerCase().contains("hallway"));
+                .anyMatch(step -> step.instruction().toLowerCase().contains("hallway"));
 
         assertTrue(hasHallway, "Same floor navigation should include hallway movement");
     }
@@ -44,10 +44,10 @@ public class NavigationTest {
         assertFalse(path.isEmpty(), "Path should not be empty");
 
         boolean usesStairs = path.stream()
-                .anyMatch(step -> step.getInstruction().toLowerCase().contains("stairs"));
+                .anyMatch(step -> step.instruction().toLowerCase().contains("stairs"));
 
         boolean mentionsFloor = path.stream()
-                .anyMatch(step -> step.getInstruction().toLowerCase().contains("floor"));
+                .anyMatch(step -> step.instruction().toLowerCase().contains("floor"));
 
         assertTrue(usesStairs, "Different floors path must use stairs");
         assertTrue(mentionsFloor, "Instructions should mention floor change");
@@ -60,10 +60,10 @@ public class NavigationTest {
         assertFalse(path.isEmpty(), "Path should not be empty");
 
         boolean exitsBuilding = path.stream()
-                .anyMatch(step -> step.getInstruction().toLowerCase().contains("exit"));
+                .anyMatch(step -> step.instruction().toLowerCase().contains("exit"));
 
         boolean mentionsDestination = path.stream()
-                .anyMatch(step -> step.getInstruction().toLowerCase().contains("head to"));
+                .anyMatch(step -> step.instruction().toLowerCase().contains("head to"));
 
         assertTrue(exitsBuilding, "Should mention exiting the building");
         assertTrue(mentionsDestination, "Should mention heading to another building");
@@ -82,7 +82,7 @@ public class NavigationTest {
         List<RouteStep> path = navService.getDirections("SCI1620", "SCI1140");
 
         boolean hasEmpty = path.stream()
-                .anyMatch(step -> step.getInstruction().trim().isEmpty());
+                .anyMatch(step -> step.instruction().trim().isEmpty());
 
         assertFalse(hasEmpty, "Instructions should not be empty");
     }
@@ -94,7 +94,7 @@ public class NavigationTest {
         assertFalse(path.isEmpty(), "Path from SIRC to SCI should exist");
 
         boolean mentionsConlin = path.stream()
-                .anyMatch(step -> step.getInstruction().contains("Conlin Road"));
+                .anyMatch(step -> step.instruction().contains("Conlin Road"));
 
         assertTrue(mentionsConlin, "Route from SIRC must mention crossing Conlin Road");
     }
@@ -104,7 +104,7 @@ public class NavigationTest {
         List<RouteStep> path = navService.getDirections("BIT1043(men)", "SIR2010");
 
         boolean mentionsConlin = path.stream()
-                .anyMatch(step -> step.getInstruction().contains("Conlin Road"));
+                .anyMatch(step -> step.instruction().contains("Conlin Road"));
 
         assertTrue(mentionsConlin, "Route to SIRC must mention crossing Conlin Road");
     }
@@ -116,16 +116,16 @@ public class NavigationTest {
         assertFalse(path.isEmpty(), "Path should not be empty");
 
         boolean exitedToQuad = path.stream()
-                .anyMatch(step -> step.getInstruction().contains("Exit the building into Polonsky Commons"));
+                .anyMatch(step -> step.instruction().contains("Exit the building into Polonsky Commons"));
 
         boolean enteredFromQuad = path.stream()
-                .anyMatch(step -> step.getInstruction().contains("Enter SHA Entrance from the Polonsky Commons"));
+                .anyMatch(step -> step.instruction().contains("Enter SHA ENTRANCE from the Polonsky Commons"));
 
         boolean wentDown = path.stream()
-                .anyMatch(step -> step.getInstruction().toLowerCase().contains("down to floor"));
+                .anyMatch(step -> step.instruction().toLowerCase().contains("down to floor"));
 
         boolean wentUp = path.stream()
-                .anyMatch(step -> step.getInstruction().toLowerCase().contains("up to floor"));
+                .anyMatch(step -> step.instruction().toLowerCase().contains("up to floor"));
 
         assertTrue(exitedToQuad, "Path must involve exiting to Polonsky Commons");
         assertTrue(enteredFromQuad, "Path must involve entering SHA from Polonsky Commons");
@@ -139,7 +139,7 @@ public class NavigationTest {
 
         assertFalse(path.isEmpty());
 
-        boolean arrivesAtTims = path.get(path.size() - 1).getInstruction()
+        boolean arrivesAtTims = path.get(path.size() - 1).instruction()
                 .contains("Tim Hortons");
 
         assertTrue(arrivesAtTims, "Final destination should be Tim Hortons");
@@ -152,7 +152,7 @@ public class NavigationTest {
         assertFalse(path.isEmpty());
 
         boolean usesStairs = path.stream()
-                .anyMatch(step -> step.getInstruction().toLowerCase().contains("stair"));
+                .anyMatch(step -> step.instruction().toLowerCase().contains("stair"));
 
         assertFalse(usesStairs, "Same floor navigation should not use stairs");
     }
@@ -162,7 +162,7 @@ public class NavigationTest {
         List<RouteStep> path = navService.getDirections("SHA131", "SHA018");
 
         boolean goesDown = path.stream()
-                .anyMatch(step -> step.getInstruction().toLowerCase().contains("down to floor 0"));
+                .anyMatch(step -> step.instruction().toLowerCase().contains("down to floor 0"));
 
         assertTrue(goesDown, "Should be able to navigate to the SHA basement");
     }
@@ -172,7 +172,7 @@ public class NavigationTest {
         List<RouteStep> path = navService.getDirections("BIT_ENTRANCE", "SHA_ENTRANCE");
 
         boolean usesPolosky = path.stream()
-                .anyMatch(step -> step.getInstruction().toLowerCase().contains("polonsky commons"));
+                .anyMatch(step -> step.instruction().toLowerCase().contains("polonsky commons"));
 
         assertTrue(usesPolosky, "Building entrances should be connected via the Campus Quad");
     }

@@ -15,9 +15,9 @@ import java.util.Map;
 
 /**
  * Layout: JSplitPane  (left | right)
- * Left panel  — empty map placeholder for regular users;
+ * Left panel  - empty map placeholder for regular users;
  * admin tree panel (JTree by location type) for admins.
- * Right panel — navigation controls: Starting Location, Destination,
+ * Right panel - navigation controls: Starting Location, Destination,
  * location-type dropdown, Navigate / Search / Favourites buttons.
  * A logout button in the top bar returns the user to LoginFrame.
  */
@@ -44,9 +44,11 @@ public class MainFrame extends JFrame {
         this.editFavourites = new EditFavourites();
         this.navService = new DijkstraNavigationService();
 
-        setTitle("Campus Connect  - "
-                + user.getUsername()
-                + (user.isAdmin() ? "  (Admin)" : ""));
+        String title = "Campus Connect  - " + user.getUsername();
+        if (user.isAdmin()) {
+            title += "  (Admin)";
+        }
+        setTitle(title);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(950, 620);
         setMinimumSize(new Dimension(700, 450));
@@ -292,7 +294,13 @@ public class MainFrame extends JFrame {
     private void refreshUserList(DefaultListModel<String> model) {
         model.clear();
         for (User u : editUser.getAllUsers()) {
-            model.addElement((u.isAdmin() ? "[Admin]  " : "[User]   ") + u.getUsername());
+            String label;
+            if (u.isAdmin()) {
+                label = "[Admin]  " + u.getUsername();
+            } else {
+                label = "[User]   " + u.getUsername();
+            }
+            model.addElement(label);
         }
     }
 
@@ -330,7 +338,7 @@ public class MainFrame extends JFrame {
 
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < steps.size(); i++) {
-            sb.append(i + 1).append(". ").append(steps.get(i).getInstruction()).append("\n");
+            sb.append(i + 1).append(". ").append(steps.get(i).instruction()).append("\n");
         }
 
         JOptionPane.showMessageDialog(this,

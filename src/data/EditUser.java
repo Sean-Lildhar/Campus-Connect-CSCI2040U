@@ -37,7 +37,12 @@ public class EditUser {
                 if (line.isEmpty()) continue;
                 String[] parts = line.split(",", 3);
                 if (parts.length < 2) continue;
-                String role = (parts.length >= 3) ? parts[2].trim() : "user";
+                String role;
+                if (parts.length >= 3) {
+                    role = parts[2].trim();
+                } else {
+                    role = "user";
+                }
                 if ("admin".equalsIgnoreCase(role)) {
                     users.add(new Admin(parts[0].trim(), parts[1].trim()));
                 } else {
@@ -81,9 +86,16 @@ public class EditUser {
         List<User> users = getAllUsers();
         try (PrintWriter pw = new PrintWriter(new FileWriter(FILE_PATH, false))) {
             for (User u : users) {
-                String r = u.getUsername().equals(targetUsername)
-                        ? role
-                        : (u.isAdmin() ? "admin" : "user");
+                String r;
+                if (u.getUsername().equals(targetUsername)) {
+                    r = role;
+                } else {
+                    if (u.isAdmin()) {
+                        r = "admin";
+                    } else {
+                        r = "user";
+                    }
+                }
                 pw.println(u.getUsername() + "," + u.getPassword() + "," + r);
             }
         } catch (IOException e) {
